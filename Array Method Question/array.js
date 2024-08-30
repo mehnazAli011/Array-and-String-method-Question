@@ -384,3 +384,26 @@ function maxProductOfThreeElm(nums) {
 }
 console.log(maxProductOfThreeElm([1, 10, 100, 1000]));
 console.log(maxProductOfThreeElm([-10, -10, 5, 2]));
+
+// ===============================================================
+
+// Q 6.write  a function and return a majority Element in the arrray
+
+function findMostFrequentElem(nums) {
+  let uniqueArr = [...new Set(nums)];
+  let frequancy = [];
+  for (let i = 0; i < uniqueArr.length; i++) {
+    let count = 0;
+    for (let j = 0; j < nums.length; j++) {
+      if (uniqueArr[i] == nums[j]) {
+        count++;
+      }
+    }
+    frequancy.push(count);
+  }
+let   index = frequancy.indexOf(Math.max(...frequancy));
+  return uniqueArr.at(index);
+}
+console.log(findMostFrequentElem([1, 1, 2, 3, 3, 3, 3, 3, 4, 5, 4]));
+console.log(findMostFrequentElem([1, 1, 2, 3, 3, 4, 5, 4, 4, 4]));
+console.log(findMostFrequentElem([1, 1, 2, 2, 2, 3, 3, 4]));
