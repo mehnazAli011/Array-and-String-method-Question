@@ -386,24 +386,27 @@ console.log(maxProductOfThreeElm([1, 10, 100, 1000]));
 console.log(maxProductOfThreeElm([-10, -10, 5, 2]));
 
 // ===============================================================
+// Q 6
+let people = [
+  { name: "Alice", age: 12 },
+  { name: "john", age: 11 },
+  { name: "jehan", age: 10 },
+  { name: "amit", age: 12 },
+];
 
-// Q 6.write  a function and return a majority Element in the arrray
+let groupByAge = {};
 
-function findMostFrequentElem(nums) {
-  let uniqueArr = [...new Set(nums)];
-  let frequancy = [];
-  for (let i = 0; i < uniqueArr.length; i++) {
-    let count = 0;
-    for (let j = 0; j < nums.length; j++) {
-      if (uniqueArr[i] == nums[j]) {
-        count++;
-      }
-    }
-    frequancy.push(count);
+for (let elm of people) {
+  //check if age group  already exixts in the groupByAge
+  if (!groupByAge[elm.age]) {
+    groupByAge[elm.age] = []; //if not,then create an empty array
   }
-let   index = frequancy.indexOf(Math.max(...frequancy));
-  return uniqueArr.at(index);
+  groupByAge[elm.age].push(elm);
 }
-console.log(findMostFrequentElem([1, 1, 2, 3, 3, 3, 3, 3, 4, 5, 4]));
-console.log(findMostFrequentElem([1, 1, 2, 3, 3, 4, 5, 4, 4, 4]));
-console.log(findMostFrequentElem([1, 1, 2, 2, 2, 3, 3, 4]));
+console.log(groupByAge);
+
+// ------------------------------------------------------------
+// with method
+let result = Object.groupBy(people, ({ age }) => age);
+console.log(result);
+// ========================================================
