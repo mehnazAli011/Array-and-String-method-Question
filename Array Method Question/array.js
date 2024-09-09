@@ -410,3 +410,33 @@ console.log(groupByAge);
 let result = Object.groupBy(people, ({ age }) => age);
 console.log(result);
 // ========================================================
+
+//Q 7
+// Problem Statement
+// You have a list of integers where each integer represents the number of occurrences of that integer in the list. For example, the integer 3 means that the number 3 appears 3 times in the list.
+
+// Write a function generateList(arr) that takes this list of integers as input and returns a new list where each integer appears in the list according to its value.
+
+// For example:
+// generateList([3, 1, 2]);
+// // Expected output: [3, 3, 3, 2, 2, 1]
+
+// function generateList(arr) {
+//   let result = [];
+//   for (let elm of arr) {
+//     let s = String(elm);
+
+//     result.push(s.repeat(Number(s)));
+//   }
+//   return result.join(" ").replaceAll(" ","").split("").map(elm=>Number(elm))
+// }
+// console.log(generateList([3, 1, 2]));
+
+// ============================================================================
+// Question: Given an array of integers, write a JavaScript function to find the "k" most frequent elements.
+
+// Example:
+
+// const nums = [1, 1, 1, 2, 2, 3];
+// const k = 2;
+// console.log(topKFrequent(nums, k)); // Output: [1, 2]

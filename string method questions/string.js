@@ -29,7 +29,7 @@ console.log(reverseTheWord("The quick brown fox"));
 // Q 4 Write a function check a string is palindrome (ignoring speces and punctuation)
 const str = "A man,a plan,a canal,panama";
 function check(str) {
-  let modifiyStr = str.replaceAll(" ", "").replaceAll(",", "").toLowerCase();
+  let modifiyStr = str.replace(/[\W|_]/g,"").toLowerCase();
   return modifiyStr == modifiyStr.split("").reverse().join("");
 }
 console.log(check(str));
@@ -110,3 +110,12 @@ function titleCase(title) {
 console.log(titleCase("a man is so uggly"));
 // =============================================================================
 
+// Q 11.Given a string ,write a method to check if it is contains all unique characters.
+function uniqueChar(s1){
+let s2 = [...new Set(s1)].join("");
+
+return s1.length===s2.length
+
+}
+console.log(uniqueChar("abcde"));
+console.log(uniqueChar("abbca"));
