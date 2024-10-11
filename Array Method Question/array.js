@@ -1,139 +1,139 @@
 // // Array method question for practice
 
-// //                                        easy Question
-// // Q1.Given the array integer, write a function find the maximum element in the array.
-// const arr = [1, 2, 3, 4, 5, 6];
+//                                        easy Question
+// Q1.Given the array integer, write a function find the maximum element in the array.
+const arr = [1, 2, 3, 4, 5, 6];
 
-// // =>1.Approch
-// function findTheMaxElmInArr(arr) {
-//   //use Math Object and speard operator(...)
-//   return Math.max(...arr);
-// }
-// console.log(findTheMaxElmInArr(arr));
-// // -------------------------------------------------------
-// // =>2.Apprcoh
-// function findTheMaxElmInArr(arr) {
-//   max = arr.reduce((priviouseValue, currentValue) => {
-//     //use ternary operator
-//     return priviouseValue <= currentValue ? currentValue : priviouseValue;
-//     // currentValue<priviouseValue
-//     //1<=1   =>1
-//     //1<=2   =>2
-//     //2<=3   =>3
-//     //3<=4   =>4
-//     //4<=5   =>5
-//     //5<=6   =>6
-//     //final result is 6
-//   }, arr[0]);
-//   return max;
-// }
-// console.log(findTheMaxElmInArr(arr));
-// //----------------------------------------------------------------
-// // //3.Approch
-// function findTheMaxElmInArr(arr) {
-//   let max = arr[0];
-//   arr.forEach((elm) => {
-//     if (elm > max) {
-//       max = elm;
-//     }
-//   });
-//   return max;
-// }
-// console.log(findTheMaxElmInArr(arr));
-// // // ===============================================================================
+// =>1.Approch
+function findTheMaxElmInArr(arr) {
+  //use Math Object and speard operator(...)
+  return Math.max(...arr);
+}
+console.log(findTheMaxElmInArr(arr));
+// -------------------------------------------------------
+// =>2.Apprcoh
+function findTheMaxElmInArr(arr) {
+  max = arr.reduce((priviouseValue, currentValue) => {
+    //use ternary operator
+    return priviouseValue <= currentValue ? currentValue : priviouseValue;
+    // currentValue<priviouseValue
+    //1<=1   =>1
+    //1<=2   =>2
+    //2<=3   =>3
+    //3<=4   =>4
+    //4<=5   =>5
+    //5<=6   =>6
+    //final result is 6
+  }, arr[0]);
+  return max;
+}
+console.log(findTheMaxElmInArr(arr));
+//----------------------------------------------------------------
+// //3.Approch
+function findTheMaxElmInArr(arr) {
+  let max = arr[0];
+  arr.forEach((elm) => {
+    if (elm > max) {
+      max = elm;
+    }
+  });
+  return max;
+}
+console.log(findTheMaxElmInArr(arr));
+// // ===============================================================================
 
-// // Q2.Given the array integer, write a function find the all even element in the array.
-
-// // =>1 Apprcoh!
-// function findAllEvenElmInArr(arr) {
-//   return arr.filter((elm) => elm % 2 == 0);
-// }
-// console.log(findAllEvenElmInArr(arr));
-
-// // // -------------------------------------------------------
-// // // =>2 Approch
-
-// function findAllEvenElmInArr(arr) {
-//   return arr.reduce((privousValue, currentValue) => {
-//     if (currentValue % 2 == 0) {
-//       privousValue.push(currentValue);
-//     }
-//     return privousValue;
-//   }, []);
-// }
-// console.log(findAllEvenElmInArr(arr));
-// // ----------------------------------------------------
-// //=>3 Approch
-// function findAllEvenElmInArr(arr) {
-//   let evenNums = [];
-//   arr.forEach((element) => {
-//     if (element % 2 == 0) {
-//       evenNums.push(element);
-//     }
-//   });
-//   return evenNums;
-// }
-// console.log(findAllEvenElmInArr(arr));
-// // // ================================================================================
-
-// Q2.Creates a new array with  the result multplie for every element  in array.
+// Q2.Given the array integer, write a function find the all even element in the array.
 
 // =>1 Apprcoh!
-// function modifiyTheArr(arr) {
-//   return arr.map((elm) => elm * 2);
-// }
-// console.log(modifiyTheArr(arr));
+function findAllEvenElmInArr(arr) {
+  return arr.filter((elm) => elm % 2 == 0);
+}
+console.log(findAllEvenElmInArr(arr));
 
-// //------------------------------------------------
+// // -------------------------------------------------------
+// // =>2 Approch
 
-// //2 Apprcoh
-// function modifiyTheArr(arr) {
-//   let mArr = [];
-//   arr.forEach((element) => {
-//     mArr.push(element * 2);
-//   });
-//   return mArr;
-// }
-// console.log(modifiyTheArr(arr));
-// // =================================================================================
-
-// Q4. find the given arr  sum.
-// //1=>
-// function findSumOfArr(arr) {
-//   return arr.reduce((acc, curr) => acc + curr, 0);
-// }
-// console.log(findSumOfArr(arr));
-// // -----------------------------
-// //=>2
-// function findSumOfArr(arr) {
-//   let sum = 0;
-//   arr.forEach((elm) => {
-//     sum += elm;
-//   });
-//   return sum;
-// }
-// console.log(findSumOfArr(arr));
+function findAllEvenElmInArr(arr) {
+  return arr.reduce((privousValue, currentValue) => {
+    if (currentValue % 2 == 0) {
+      privousValue.push(currentValue);
+    }
+    return privousValue;
+  }, []);
+}
+console.log(findAllEvenElmInArr(arr));
+// ----------------------------------------------------
+//=>3 Approch
+function findAllEvenElmInArr(arr) {
+  let evenNums = [];
+  arr.forEach((element) => {
+    if (element % 2 == 0) {
+      evenNums.push(element);
+    }
+  });
+  return evenNums;
+}
+console.log(findAllEvenElmInArr(arr));
 // // ================================================================================
 
-// Q5 Find the givene array first even number.
+Q2.Creates a new array with  the result multplie for every element  in array.
 
-// =>1
-// function firstEvenNumber(arr) {
-//   return arr.find((elm) => elm % 2 == 0);
-// }
-// console.log(firstEvenNumber(arr));
-// // -----------------------------------------------
-// // =>2
-// function firstEvenNumber(arr) {
-//   return arr.at(arr.findIndex((elm) => elm % 2 == 0));
-// }
-// console.log(firstEvenNumber(arr));
-// // -------------------------------------------------
-// // =>3
-// function firstEvenNumber(arr) {
-//   return arr.filter((elm) => elm % 2 == 0).at(0);
-// }
-// console.log(firstEvenNumber(arr));
+=>1 Apprcoh!
+function modifiyTheArr(arr) {
+  return arr.map((elm) => elm * 2);
+}
+console.log(modifiyTheArr(arr));
+
+//------------------------------------------------
+
+//2 Apprcoh
+function modifiyTheArr(arr) {
+  let mArr = [];
+  arr.forEach((element) => {
+    mArr.push(element * 2);
+  });
+  return mArr;
+}
+console.log(modifiyTheArr(arr));
+// =================================================================================
+
+Q4. find the given arr  sum.
+//1=>
+function findSumOfArr(arr) {
+  return arr.reduce((acc, curr) => acc + curr, 0);
+}
+console.log(findSumOfArr(arr));
+// -----------------------------
+//=>2
+function findSumOfArr(arr) {
+  let sum = 0;
+  arr.forEach((elm) => {
+    sum += elm;
+  });
+  return sum;
+}
+console.log(findSumOfArr(arr));
+// ================================================================================
+
+Q5 Find the givene array first even number.
+
+=>1
+function firstEvenNumber(arr) {
+  return arr.find((elm) => elm % 2 == 0);
+}
+console.log(firstEvenNumber(arr));
+// -----------------------------------------------
+// =>2
+function firstEvenNumber(arr) {
+  return arr.at(arr.findIndex((elm) => elm % 2 == 0));
+}
+console.log(firstEvenNumber(arr));
+// -------------------------------------------------
+// =>3
+function firstEvenNumber(arr) {
+  return arr.filter((elm) => elm % 2 == 0).at(0);
+}
+console.log(firstEvenNumber(arr));
 // // =================================================================================
 // Q6.create a function ,reverse the given array.
 
