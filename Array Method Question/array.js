@@ -76,9 +76,9 @@ function findAllEvenElmInArr(arr) {
 console.log(findAllEvenElmInArr(arr));
 // // ================================================================================
 
-Q2.Creates a new array with  the result multplie for every element  in array.
+// Q2.Creates a new array with  the result multplie for every element  in array.
 
-=>1 Apprcoh!
+// =>1 Apprcoh!
 function modifiyTheArr(arr) {
   return arr.map((elm) => elm * 2);
 }
@@ -97,7 +97,7 @@ function modifiyTheArr(arr) {
 console.log(modifiyTheArr(arr));
 // =================================================================================
 
-Q4. find the given arr  sum.
+// Q4. find the given arr  sum.
 //1=>
 function findSumOfArr(arr) {
   return arr.reduce((acc, curr) => acc + curr, 0);
@@ -115,9 +115,9 @@ function findSumOfArr(arr) {
 console.log(findSumOfArr(arr));
 // ================================================================================
 
-Q5 Find the givene array first even number.
+// Q5 Find the givene array first even number.
 
-=>1
+// =>1
 function firstEvenNumber(arr) {
   return arr.find((elm) => elm % 2 == 0);
 }
