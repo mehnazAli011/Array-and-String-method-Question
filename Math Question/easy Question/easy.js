@@ -249,7 +249,7 @@ console.log(getSneakyNumbers([7, 1, 5, 4, 3, 4, 6, 0, 9, 5, 8, 2]));
 //Time complexity:-O(n)
 
 function getSneakyNumbers(nums) {
- return nums.filter((elm,i)=> nums.indexOf(elm)!==i)
+  return nums.filter((elm, i) => nums.indexOf(elm) !== i);
 }
 console.log(getSneakyNumbers([0, 1, 1, 0]));
 console.log(getSneakyNumbers([0, 3, 2, 1, 3, 2]));
@@ -257,3 +257,158 @@ console.log(getSneakyNumbers([7, 1, 5, 4, 3, 4, 6, 0, 9, 5, 8, 2]));
 //Time complexity:-O(n)
 
 // ========================================================================================
+//Q 6. Add two integer.
+function addTwoInteger(num1, num2) {
+  return num1 + num2;
+}
+console.log(addTwoInteger(12, 5));
+console.log(addTwoInteger(-10, 4));
+// =====================================================================================
+//Q 7 Sum Multiples
+//Brute Approach
+function sumOfMutiple(n) {
+  let sum = 0;
+  for (let i = 1; i <= n; i++) {
+    if (i % 3 === 0 || i % 5 === 0 || i % 7 === 0) {
+      sum += i;
+    }
+  }
+  return sum;
+}
+console.log(sumOfMutiple(7));
+console.log(sumOfMutiple(10));
+console.log(sumOfMutiple(9));
+//Time complexity:O(n)
+// ===================================================================================
+// Q 8 Difference Between Element Sum and Digit Sum of An Array
+// You are given a positive integer array nums.
+
+// The element sum is the sum of all the elements in nums.
+// The digit sum is the sum of all the digits (not necessarily distinct) that appear in nums.
+// Return the absolute difference between the element sum and digit sum of nums.
+
+// Note that the absolute difference between two integers x and y is defined as |x - y|.
+
+// Example 1:
+
+// Input: nums = [1,15,6,3]
+// Output: 9
+// Explanation:
+// The element sum of nums is 1 + 15 + 6 + 3 = 25.
+// The digit sum of nums is 1 + 1 + 5 + 6 + 3 = 16.
+// The absolute difference between the element sum and digit sum is |25 - 16| = 9.
+// Example 2:
+
+// Input: nums = [1,2,3,4]
+// Output: 0
+// Explanation:
+// The element sum of nums is 1 + 2 + 3 + 4 = 10.
+// The digit sum of nums is 1 + 2 + 3 + 4 = 10.
+// The absolute difference between the element sum and digit sum is |10 - 10| = 0.
+
+// //Brute Approach
+function differenceOfSum(nums) {
+  let elmSum = 0;
+  let digitSum = 0;
+  let s = String(nums).split(",").join("");
+  for (let i = 0; i < nums.length; i++) {
+    elmSum += nums[i];
+  }
+  for (let j = 0; j < s.length; j++) {
+    digitSum += Number(s[j]);
+  }
+  return Math.abs(elmSum - digitSum);
+}
+console.log(differenceOfSum([1, 15, 6, 3]));
+console.log(differenceOfSum([1, 2, 3, 4]));
+// Time complexity:-O(n**2)
+
+//Optimal Approach
+// function differenceOfSum(nums) {
+//   let eleSum = 0;
+//   let digSum = 0;
+
+//   for (let ele of nums) {
+//       eleSum += ele;
+//       let temp = ele; // Create a temporary variable
+//       while (temp > 0) {
+//           digSum += temp % 10;
+//           temp = Math.floor(temp / 10); // Modify temp, not ele
+//       }
+//   }
+
+//   return eleSum - digSum;
+// }
+// console.log(differenceOfSum([1, 15, 6, 3]));
+// console.log(differenceOfSum([1, 2, 3, 4]));
+
+//pending
+function differenceOfSum(nums) {
+
+}
+console.log(differenceOfSum([1, 15, 6, 3]));
+console.log(differenceOfSum([1, 2, 3, 4]));
+//Time complexity:-O(n**2)
+// =========================================================================================
+// Q 9 Find if Digit Game Can Be Won
+// You are given an array of positive integers nums.
+
+// Alice and Bob are playing a game. In the game, Alice can choose either all single-digit numbers or all double-digit numbers from nums, and the rest of the numbers are given to Bob. Alice wins if the sum of her numbers is strictly greater than the sum of Bob's numbers.
+
+// Return true if Alice can win this game, otherwise, return false.
+
+// Example 1:
+
+// Input: nums = [1,2,3,4,10]
+
+// Output: false
+
+// Explanation:
+
+// Alice cannot win by choosing either single-digit or double-digit numbers.
+
+// Example 2:
+
+// Input: nums = [1,2,3,4,5,14]
+
+// Output: true
+
+// Explanation:
+
+// Alice can win by choosing single-digit numbers which have a sum equal to 15.
+
+// Example 3:
+
+// Input: nums = [5,5,5,25]
+
+// Output: true
+
+// Explanation:
+
+// Alice can win by choosing double-digit numbers which have a sum equal to 25.
+//Brute Approach
+function canAliceWin(nums) {
+  let score1 = 0;
+  let score2 = 0;
+  for (let num of nums) {
+    if (num < 10) {
+      score1 += num;
+    } else {
+      score2 += num;
+    }
+  }
+  return score1 !== score2 ? true : false;
+}
+console.log(canAliceWin([1, 2, 3, 4, 10]));
+console.log(canAliceWin([1, 2, 3, 4, 5, 14]));
+console.log(canAliceWin([5, 5, 5, 25]));
+//Better Approach
+function canAliceWin(nums) {
+  let single = nums.filter((elm) => elm < 10).reduce((acc, curr) => acc + curr);
+  let double = nums.reduce((acc, curr) => acc + curr) - single;
+  return single !== double;
+}
+console.log(canAliceWin([1, 2, 3, 4, 10]));
+console.log(canAliceWin([1, 2, 3, 4, 5, 14]));
+console.log(canAliceWin([5, 5, 5, 25]));
+// =======================================================================================

@@ -14,8 +14,16 @@
 // Output: 1
 // Explanation: 1 has no prime factors, therefore all of its prime factors are limited to 2, 3, and 5.
 
-function nthUgglyNumber(n) {
+// function nthUgglyNumber(n) {
  
-}
-console.log(nthUgglyNumber(10));
-console.log(nthUgglyNumber(1));
+// }
+// console.log(nthUgglyNumber(10));
+// console.log(nthUgglyNumber(1));
+// // ================================================================================
+
+// //Q 2.Count Triplets That Can Form Two Arrays of Equal XOR
+// function countTriplet(nums){
+
+// }
+// console.log(countTriplet([2,3,1,6,7]));
+// console.log(countTriplet([1,1,1,1,1]));
