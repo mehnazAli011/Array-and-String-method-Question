@@ -343,12 +343,11 @@ console.log(differenceOfSum([1, 2, 3, 4]));
 // console.log(differenceOfSum([1, 2, 3, 4]));
 
 //pending
-function differenceOfSum(nums) {
+// function differenceOfSum(nums) {
 
-}
-console.log(differenceOfSum([1, 15, 6, 3]));
-console.log(differenceOfSum([1, 2, 3, 4]));
-//Time complexity:-O(n**2)
+// }
+// console.log(differenceOfSum([1, 15, 6, 3]));
+// console.log(differenceOfSum([1, 2, 3, 4]));
 // =========================================================================================
 // Q 9 Find if Digit Game Can Be Won
 // You are given an array of positive integers nums.
@@ -412,3 +411,37 @@ console.log(canAliceWin([1, 2, 3, 4, 10]));
 console.log(canAliceWin([1, 2, 3, 4, 5, 14]));
 console.log(canAliceWin([5, 5, 5, 25]));
 // =======================================================================================
+//Q 10 Sum of Absoluate Differences in sorted Array
+// You are given an integer array nums sorted in non-decreasing order.
+
+// Build and return an integer array result with the same length as nums such that result[i] is equal to the summation of absolute differences between nums[i] and all the other elements in the array.
+
+// In other words, result[i] is equal to sum(|nums[i]-nums[j]|) where 0 <= j < nums.length and j != i (0-indexed).
+
+// Example 1:
+
+// Input: nums = [2,3,5]
+// Output: [4,3,5]
+// Explanation: Assuming the arrays are 0-indexed, then
+// result[0] = |2-2| + |2-3| + |2-5| = 0 + 1 + 3 = 4,
+// result[1] = |3-2| + |3-3| + |3-5| = 1 + 0 + 2 = 3,
+// result[2] = |5-2| + |5-3| + |5-5| = 3 + 2 + 0 = 5.
+// Example 2:
+
+// Input: nums = [1,4,6,8,10]
+// Output: [24,15,13,15,21]
+//Brute Approach
+function getSumAbsoluteDifferences(nums) {
+  let res = [];
+  for (let i = 0; i < nums.length; i++) {
+    let sum = 0;
+    for (let j = 0; j < nums.length; j++) {
+      sum += Math.abs(nums[i] - nums[j]);
+    }
+    res.push(sum);
+  }g
+  return res;
+}
+console.log(getSumAbsoluteDifferences([2, 3, 5]));
+console.log(getSumAbsoluteDifferences([1, 4, 6, 8, 10]));
+//Time complexity:O(n**2)
