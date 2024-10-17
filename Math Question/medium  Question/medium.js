@@ -1,29 +1,26 @@
-// Q 1.Uggly number ||
-// An ugly number is a positive integer whose prime factors are limited to 2, 3, and 5.
-
-// Given an integer n, return the nth ugly number.
+// Q 1 Super pow
+// Your task is to calculate ab mod 1337 where a is a positive integer and b is an extremely large positive integer given in the form of an array.
 
 // Example 1:
 
-// Input: n = 10
-// Output: 12
-// Explanation: [1, 2, 3, 4, 5, 6, 8, 9, 10, 12] is the sequence of the first 10 ugly numbers.
+// Input: a = 2, b = [3]
+// Output: 8
 // Example 2:
 
-// Input: n = 1
+// Input: a = 2, b = [1,0]
+// Output: 1024
+// Example 3:
+
+// Input: a = 1, b = [4,3,3,8,5,2]
 // Output: 1
-// Explanation: 1 has no prime factors, therefore all of its prime factors are limited to 2, 3, and 5.
 
-// function nthUgglyNumber(n) {
- 
-// }
-// console.log(nthUgglyNumber(10));
-// console.log(nthUgglyNumber(1));
-// // ================================================================================
-
-// //Q 2.Count Triplets That Can Form Two Arrays of Equal XOR
-// function countTriplet(nums){
-
-// }
-// console.log(countTriplet([2,3,1,6,7]));
-// console.log(countTriplet([1,1,1,1,1]));
+function superPow(a, b) {
+  let s = "";
+  for (let i = 0; i < b.length; i++) {
+    s += b[i];
+  }
+  return a ** Number(s);
+}
+console.log(superPow(2, [3]));
+console.log(superPow(2, [1, 0]));
+console.log(superPow(1, [4, 3, 3, 8, 5, 2]));
