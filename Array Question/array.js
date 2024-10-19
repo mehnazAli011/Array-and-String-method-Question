@@ -288,19 +288,36 @@ function findMinimunElm(nums) {
 console.log(findMinimunElm([3, 4, 5, 1, 2]));
 console.log(findMinimunElm([4, 5, 6, 7, 0, 1, 2]));
 console.log(findMinimunElm([11, 13, 15, 17]));
+//Time complexity:O(n**2)
 
+// function findMinimunElm(nums) {
+//   return Math.min(...nums);
+// }
+// console.log(findMinimunElm([3, 4, 5, 1, 2]));
+// console.log(findMinimunElm([4, 5, 6, 7, 0, 1, 2]));
+// console.log(findMinimunElm([11, 13, 15, 17]));
+// //Binary sreach
 function findMinimunElm(nums) {
-  return Math.min(...nums);
+  let left = 0;
+  let right = nums.length - 1;
+  let ans = Infinity;
+  while (left < right) {
+    mid = Math.floor((left + right) / 2);
+    if (nums[left] <= nums[mid]) {
+      ans = Math.min(nums[left], ans);
+      left = mid + 1;
+    } else {
+      ans = Math.min(ans, nums[mid]);
+      right = mid - 1;
+    }
+  }
+  return ans;
 }
 console.log(findMinimunElm([3, 4, 5, 1, 2]));
 console.log(findMinimunElm([4, 5, 6, 7, 0, 1, 2]));
 console.log(findMinimunElm([11, 13, 15, 17]));
-// //Binary sreach
-// function findMinimunElm(nums) {}
-// console.log(findMinimunElm([3, 4, 5, 1, 2]));
-// console.log(findMinimunElm([4, 5, 6, 7, 0, 1, 2]));
-// console.log(findMinimunElm([11, 13, 15, 17]));
-// // =========================================================================================
+//Time  complexity:O(log n)
+// =========================================================================================
 //Q 7 Number of Employees Who met the Target
 // There are n employees in a company, numbered from 0 to n - 1. Each employee i has worked for hours[i] hours in the company.
 
@@ -327,15 +344,24 @@ console.log(findMinimunElm([11, 13, 15, 17]));
 // Output: 0
 // Explanation: The company wants each employee to work for at least 6 hours.
 // There are 0 employees who met the target.
+//Brute Approach
+// function numberOfEmployeesWhoMetTarget(hours, target) {
+//   let count = 0;
+//   for (let i = 0; i < hours.length; i++) {
+//     if (target <= hours[i]) {
+//       count++;
+//     }
+//   }
+//   return count;
+// }
+// console.log(numberOfEmployeesWhoMetTarget([0, 1, 2, 3, 4], 2));
+// console.log(numberOfEmployeesWhoMetTarget([5, 1, 4, 2, 2], 6));
+//Time complexity: O(n)
 function numberOfEmployeesWhoMetTarget(hours, target) {
-  let count = 0;
-  for (let i = 0; i < hours.length; i++) {
-    if (target <= hours[i]) {
-      count++;
-    }
-  }
-  return count;
+  return hours.filter((elm=>elm>=target)).length
 }
 console.log(numberOfEmployeesWhoMetTarget([0, 1, 2, 3, 4], 2));
 console.log(numberOfEmployeesWhoMetTarget([5, 1, 4, 2, 2], 6));
+//Time complexity: O(n)
 // ======================================================================================
+console.log(7+9+54+16+39+16+17+12+30+31+25+18+15+32+40+7+31);
