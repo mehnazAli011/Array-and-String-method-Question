@@ -163,7 +163,7 @@ console.log(splitWordsBySeparator(["|||"], "|"));
 // Explanation:
 
 // The only special character in word is 'b'.
-
+//Brute Approach
 function countSpeicalChar(word) {
   let uniqueChar = Array.from(new Set(word)).join("");
   let count = 0;
@@ -176,6 +176,47 @@ function countSpeicalChar(word) {
     }
   }
   return count / 2;
+}
+console.log(countSpeicalChar("aaAbcBC"));
+console.log(countSpeicalChar("abc"));
+console.log(countSpeicalChar("abBCab"));
+console.log(countSpeicalChar("BBbab"));
+//another approach
+function countSpeicalChar(word) {
+  let uniqueChar = Array.from(new Set(word))
+    .join("")
+    .split("")
+    .sort()
+    .map((char) => char.charCodeAt());
+  console.log(uniqueChar);
+
+  let count = 0;
+  for (let i = 0; i < uniqueChar.length; i++) {
+    for (let j = i + 1; j < uniqueChar.length; j++) {
+      if (Math.abs(uniqueChar[i] - uniqueChar[j]) === 32) {
+        count++;
+      }
+    }
+  }
+  return count;
+}
+console.log(countSpeicalChar("aaAbcBC"));
+console.log(countSpeicalChar("abc"));
+console.log(countSpeicalChar("abBCab"));
+console.log(countSpeicalChar("BBbab"));
+//both time compexity:O(n**2)
+
+//better Approach
+function countSpeicalChar(word) {
+  let seen = new Set();
+  for (let i = 0; i < word.length; i++) {
+    let one = word[i].toLowerCase();
+    let two = word[i].toUpperCase();
+    if (word.includes(one) && word.includes(two)) {
+      seen.add(two);
+    }
+  }
+  return seen.size;
 }
 console.log(countSpeicalChar("aaAbcBC"));
 console.log(countSpeicalChar("abc"));
