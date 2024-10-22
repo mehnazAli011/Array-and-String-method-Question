@@ -222,6 +222,7 @@ console.log(countSpeicalChar("aaAbcBC"));
 console.log(countSpeicalChar("abc"));
 console.log(countSpeicalChar("abBCab"));
 console.log(countSpeicalChar("BBbab"));
+//Time complexity:O(n)
 // ========================================================================================
 //Q 5 maximum number of found in sentance.
 // A sentence is a list of words that are separated by a single space with no leading or trailing spaces.
@@ -263,8 +264,12 @@ console.log(
 console.log(
   mostWordsFound(["please wait", "continue to fight", "continue to win"])
 );
-/*
+
 function mostWordsFound(sentences) {
+  let lenghtOfSentence = sentences.map(
+    (sentence) => sentence.split(" ").length
+  );
+  return Math.max(...lenghtOfSentence);
 }
 
 console.log(
@@ -278,5 +283,4 @@ console.log(
   mostWordsFound(["please wait", "continue to fight", "continue to win"])
 );
 
-*/
 // =======================================================================================

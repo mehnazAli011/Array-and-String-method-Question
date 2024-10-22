@@ -358,10 +358,111 @@ console.log(findMinimunElm([11, 13, 15, 17]));
 // console.log(numberOfEmployeesWhoMetTarget([5, 1, 4, 2, 2], 6));
 //Time complexity: O(n)
 function numberOfEmployeesWhoMetTarget(hours, target) {
-  return hours.filter((elm=>elm>=target)).length
+  return hours.filter((elm) => elm >= target).length;
 }
 console.log(numberOfEmployeesWhoMetTarget([0, 1, 2, 3, 4], 2));
 console.log(numberOfEmployeesWhoMetTarget([5, 1, 4, 2, 2], 6));
 //Time complexity: O(n)
 // ======================================================================================
-console.log(7+9+54+16+39+16+17+12+30+31+25+18+15+32+40+7+31);
+//Q Kids with the greatest number of candies
+// There are n kids with candies. You are given an integer array candies, where each candies[i] represents the number of candies the ith kid has, and an integer extraCandies, denoting the number of extra candies that you have.
+
+// Return a boolean array result of length n, where result[i] is true if, after giving the ith kid all the extraCandies, they will have the greatest number of candies among all the kids, or false otherwise.
+
+// Note that multiple kids can have the greatest number of candies.
+
+// Example 1:
+
+// Input: candies = [2,3,5,1,3], extraCandies = 3
+// Output: [true,true,true,false,true]
+// Explanation: If you give all extraCandies to:
+// - Kid 1, they will have 2 + 3 = 5 candies, which is the greatest among the kids.
+// - Kid 2, they will have 3 + 3 = 6 candies, which is the greatest among the kids.
+// - Kid 3, they will have 5 + 3 = 8 candies, which is the greatest among the kids.
+// - Kid 4, they will have 1 + 3 = 4 candies, which is not the greatest among the kids.
+// - Kid 5, they will have 3 + 3 = 6 candies, which is the greatest among the kids.
+// Example 2:
+
+// Input: candies = [4,2,1,1,2], extraCandies = 1
+// Output: [true,false,false,false,false]
+// Explanation: There is only 1 extra candy.
+// Kid 1 will always have the greatest number of candies, even if a different kid is given the extra candy.
+// Example 3:
+
+// Input: candies = [12,1,12], extraCandies = 10
+// Output: [true,false,true]
+//Brute Approach
+function kidsWithCandies(candies, extraCandies) {
+  let max = Math.max(...candies);
+  for (let i = 0; i < candies.length; i++) {
+    if (candies[i] + extraCandies >= max) {
+      candies[i] = true;
+    } else {
+      candies[i] = false;
+    }
+  }
+  return candies;
+}
+console.log(kidsWithCandies([2, 3, 5, 1, 3], 3));
+console.log(kidsWithCandies([4, 2, 1, 1, 2], 1));
+console.log(kidsWithCandies([12, 1, 12], 10));
+//Time complexity:O(n)
+
+//With  method
+function kidsWithCandies(candies, extraCandies) {
+  let max = Math.max(...candies);
+  return candies.map((num) => num + extraCandies >= max);
+}
+console.log(kidsWithCandies([2, 3, 5, 1, 3], 3));
+console.log(kidsWithCandies([4, 2, 1, 1, 2], 1));
+console.log(kidsWithCandies([12, 1, 12], 10));
+//=========================================================================================
+//Q find  peak Element
+// A peak element is an element that is strictly greater than its neighbors.
+
+// Given a 0-indexed integer array nums, find a peak element, and return its index. If the array contains multiple peaks, return the index to any of the peaks.
+
+// You may imagine that nums[-1] = nums[n] = -∞. In other words, an element is always considered to be strictly greater than a neighbor that is outside the array.
+
+// You must write an algorithm that runs in O(log n) time.
+
+// Example 1:
+
+// Input: nums = [1,2,3,1]
+// Output: 2
+// Explanation: 3 is a peak element and your function should return the index number 2.
+// Example 2:
+
+// Input: nums = [1,2,1,3,5,6,4]
+// Output: 5
+// Explanation: Your function can return either index number 1 where the peak element is 2, or index number 5 where the peak element is 6.
+
+function findPeak(nums) {
+  for (let i = 1; i < nums.length - 1; i++) {
+    if (nums[i - 1] < nums[i] && nums[i] > nums[i + 1]) {
+      return i;
+    }
+  }
+  return -1;
+}
+console.log(findPeak([1, 2, 3, 1]));
+console.log(findPeak([1, 2, 1, 3, 5, 6, 4]));
+//Time complexity:O(n)
+
+function findPeak(nums) {
+  let left = 0;
+  let right = nums.length - 1;
+  while (left < right) {
+    mid = Math.floor((left + right) / 2);
+    if (nums[mid] < nums[mid + 1]) {
+      left = mid + 1;
+    } else {
+      right = mid;
+    }
+  }
+  return left;
+}
+console.log(findPeak([1, 2, 3, 1]));
+console.log(findPeak([1, 2, 1, 3, 5, 6, 4]));
+//Time complexity:O(n)
+// =====================================================================================
