@@ -439,9 +439,125 @@ function getSumAbsoluteDifferences(nums) {
       sum += Math.abs(nums[i] - nums[j]);
     }
     res.push(sum);
-  }g
+  }
+
   return res;
 }
 console.log(getSumAbsoluteDifferences([2, 3, 5]));
 console.log(getSumAbsoluteDifferences([1, 4, 6, 8, 10]));
 //Time complexity:O(n**2)
+// =======================================================================================
+//Q Check if The Number is Fascinating
+
+// You are given an integer n that consists of exactly 3 digits.
+
+// We call the number n fascinating if, after the following modification, the resulting number contains all the digits from 1 to 9 exactly once and does not contain any 0's:
+
+// Concatenate n with the numbers 2 * n and 3 * n.
+// Return true if n is fascinating, or false otherwise.
+
+// Concatenating two numbers means joining them together. For example, the concatenation of 121 and 371 is 121371.
+
+// Example 1:
+
+// Input: n = 192
+// Output: true
+// Explanation: We concatenate the numbers n = 192 and 2 * n = 384 and 3 * n = 576. The resulting number is 192384576. This number contains all the digits from 1 to 9 exactly once.
+// Example 2:
+
+// Input: n = 100
+// Output: false
+// Explanation: We concatenate the numbers n = 100 and 2 * n = 200 and 3 * n = 300. The resulting number is 100200300. This number does not satisfy any of the conditions.
+
+//Brute Approach
+function isFascinatingNum(n) {
+  let concat1 = n * 2;
+  let concat2 = n * 3;
+  let fullConcat = n.toString() + concat1.toString() + concat2.toString();
+
+  if (fullConcat.length !== 9) {
+    return false;
+  }
+
+  let concatArray = [];
+  for (let i = 0; i < fullConcat.length; i++) {
+    concatArray.push(fullConcat[i]);
+  }
+
+  let digitSet = new Set(concatArray);
+  return digitSet.size === 9 && !digitSet.has("0");
+}
+console.log(isFascinatingNum(192));
+console.log(isFascinatingNum(100));
+console.log(isFascinatingNum(789));
+//Time complexity:O(n)
+
+function isFascinatingNum(n) {
+  let seen = new Set();
+  let str = `${n}${n * 2}${n * 3}`;
+  if (str.length !== 9)
+    for (let c of str) {
+      if (c === "0" || seen.has(c)) return false;
+      seen.add(c);
+    }
+  return seen.size === 9;
+}
+console.log(isFascinatingNum(192));
+console.log(isFascinatingNum(100));
+console.log(isFascinatingNum(789));
+
+function isFascinatingNum(n) {
+  let str = `${n}${n * 2}${n * 3}`;
+  let validStr = "123456789";
+  return Array.from(new Set(str)).sort().join("") === validStr;
+}
+console.log(isFascinatingNum(192));
+console.log(isFascinatingNum(100));
+console.log(isFascinatingNum(789));
+// =======================================================================================
+//  Q Is Object Empty
+// Given an object or an array, return if it is empty.
+
+// An empty object contains no key-value pairs.
+// An empty array contains no elements.
+// You may assume the object or array is the output of JSON.parse.
+
+// Example 1:
+
+// Input: obj = {"x": 5, "y": 42}
+// Output: false
+// Explanation: The object has 2 key-value pairs so it is not empty.
+// Example 2:
+
+// Input: obj = {}
+// Output: true
+// Explanation: The object doesn't have any key-value pairs so it is empty.
+// Example 3:
+
+// Input: obj = [null, false, 0]
+// Output: false
+// Explanation: The array has 3 elements so it is not empty.
+
+//Brute Approach
+function isEmpty(obj) {
+  if (Array.isArray(obj)) {
+    return obj.length === 0;
+  }
+
+  return Object.keys(obj).length === 0;
+}
+console.log(isEmpty({ x: 5, y: 42 }));
+console.log(isEmpty({}));
+console.log(isEmpty([null, false, 0]));
+
+//Better Approach
+function isEmpty(obj) {
+  for (let key in obj) {
+    return false;
+  }
+  return true;
+}
+console.log(isEmpty({ x: 5, y: 42 }));
+console.log(isEmpty({}));
+console.log(isEmpty([null, false, 0]));
+// ====================================================================================
