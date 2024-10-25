@@ -301,8 +301,49 @@ console.log(
 
 // Input: s = "Myself2 Me1 I4 and3"
 // Output: "Me Myself and I"
-// Explanation: Sort the words in s to their original positions "Me1 Myself2 and3 I4", then remove the numbers.
+// // // Explanation: Sort the words in s to their original positions "Me1 Myself2 and3 I4", then remove the numbers.
 
 // function sortSentence(s) {
+//   let anwser = [];
+//   let arr = s.split(" ");  
+//   for (let i = 0; i < arr.length; i++) {
+//     anwser[i] = arr[i].slice(0, -1);
+//   }
+//   return anwser.sort()
 // }
-// entence("Myself2 Me1 I4 and3"));
+
+// console.log(sortSentence("is2 sentence4 This1 a3"));
+// console.log(sortSentence("Myself2 Me1 I4 and3"));
+// =======================================================================================
+// Q Maximum Number of Balloons
+
+// Given a string text, you want to use the characters of text to form as many instances of the word "balloon" as possible.
+
+// You can use each character in text at most once. Return the maximum number of instances that can be formed.
+
+// Example 1:
+
+// Input: text = "nlaebolko"
+// Output: 1
+// Example 2:
+
+// Input: text = "loonbalxballpoon"
+// Output: 2
+// Example 3:
+
+// Input: text = "leetcode"
+// Output: 0
+
+// function maxNumberOfBalloons(text) {
+//   let count =0;
+//   let map = new Map();
+//   for(let char of text){
+//     map.set(char,(map.get(char)||0)+1);
+//   }
+  
+  
+// }
+// console.log(maxNumberOfBalloons("nlaebolko"));
+// console.log(maxNumberOfBalloons("loonbalxballpoon"));
+// console.log(maxNumberOfBalloons("leetcode"));
+// console.log(maxNumberOfBalloons("balon"));
