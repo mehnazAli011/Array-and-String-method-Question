@@ -302,18 +302,34 @@ console.log(
 // Input: s = "Myself2 Me1 I4 and3"
 // Output: "Me Myself and I"
 // // // Explanation: Sort the words in s to their original positions "Me1 Myself2 and3 I4", then remove the numbers.
-
 // function sortSentence(s) {
-//   let anwser = [];
-//   let arr = s.split(" ");  
-//   for (let i = 0; i < arr.length; i++) {
-//     anwser[i] = arr[i].slice(0, -1);
+// let arr = s.split(" ");
+// for(let i=0;i<arr.length;i++){
+//   let temp = arr[0].at(-1)
+//   for(let j=1;j<arr.length;j++){
+//     if(arr[i].at(-1)>arr[j].at(-1)){
+//       temp=arr[j].at(-1);
+//     arr[j].at(-1)=arr[i].at(-1);
+//     arr[i].at(-1)=temp;
+//     }
 //   }
-//   return anwser.sort()
+// }
+// return arr;
 // }
 
 // console.log(sortSentence("is2 sentence4 This1 a3"));
 // console.log(sortSentence("Myself2 Me1 I4 and3"));
+
+function sortSentence(s) {
+  return s
+    .split(" ")
+    .sort((a, b) => a[a.length - 1] - b[b.length - 1])
+    .map((word) => word.slice(0, word.length - 1))
+    .join(" ");
+}
+
+console.log(sortSentence("is2 sentence4 This1 a3"));
+console.log(sortSentence("Myself2 Me1 I4 and3"));
 // =======================================================================================
 // Q Maximum Number of Balloons
 
@@ -333,17 +349,72 @@ console.log(
 
 // Input: text = "leetcode"
 // Output: 0
+//Brute Approach
+function maxNumberOfBalloons(text) {
+  let map = new Map();
+  for (let char of text) {
+    map.set(char, (map.get(char) || 0) + 1);
+  }
 
-// function maxNumberOfBalloons(text) {
-//   let count =0;
-//   let map = new Map();
-//   for(let char of text){
-//     map.set(char,(map.get(char)||0)+1);
-//   }
-  
-  
-// }
-// console.log(maxNumberOfBalloons("nlaebolko"));
-// console.log(maxNumberOfBalloons("loonbalxballpoon"));
-// console.log(maxNumberOfBalloons("leetcode"));
-// console.log(maxNumberOfBalloons("balon"));
+  let b = map.get("b") || 0;
+  let a = map.get("a") || 0;
+  let l = (map.get("l") || 0) / 2;
+  let o = (map.get("o") || 0) / 2;
+  let n = map.get("n") || 0;
+
+  return Math.floor(Math.min(b, a, l, o, n));
+}
+console.log(maxNumberOfBalloons("nlaebolko"));
+console.log(maxNumberOfBalloons("loonbalxballpoon"));
+console.log(maxNumberOfBalloons("leetcode"));
+console.log(maxNumberOfBalloons("balon"));
+
+//other Approach
+function maxNumberOfBalloons(text) {
+  let map = { b: 0, a: 0, l: 0, o: 0, n: 0 };
+  for (let i = 0; i < text.length; i++) {
+    if (map[text[i]] !== undefined) {
+      map[text[i]]++;
+    }
+  }
+  return Math.min(
+    map["b"],
+    map["a"],
+    Math.floor(map["l"] / 2),
+    Math.floor(map["o"] / 2),
+    map["n"]
+  );
+}
+console.log(maxNumberOfBalloons("nlaebolko"));
+console.log(maxNumberOfBalloons("loonbalxballpoon"));
+console.log(maxNumberOfBalloons("leetcode"));
+console.log(maxNumberOfBalloons("balon"));
+
+//Optimal Approach
+function maxNumberOfBalloons(text) {
+  let balloon = new Map();
+  let characters = "balon";
+  let regex = /[balon]/;
+
+  for (let i = 0; i < characters.length; i++) {
+    balloon.set(characters[i], 0);
+  }
+  for (let i = 0; i < text.length; i++) {
+    if (text[i].match(regex)) {
+      balloon.set(text[i], balloon.get(text[i]) + 1);
+    }
+  }
+
+  balloon.set("o", Math.floor(balloon.get("o") / 2));
+  balloon.set("l", Math.floor(balloon.get("l") / 2));
+
+  return Math.min(...balloon.values()) || 0;
+}
+console.log(maxNumberOfBalloons("nlaebolko"));
+console.log(maxNumberOfBalloons("loonbalxballpoon"));
+console.log(maxNumberOfBalloons("leetcode"));
+console.log(maxNumberOfBalloons("balon"));
+//Time compliexity:O(n**2)
+
+
+// <---------------------------------------------------------------->
