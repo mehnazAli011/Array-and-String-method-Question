@@ -629,3 +629,102 @@ console.log(
   countSeniors(["7868190130M7522", "5303914400F9211", "9273338290F4010"])
 );
 console.log(countSeniors(["1313579440F2036", "2921522980M5644"]));
+
+//             <--------------------------------------------------->
+
+//Q Number of unequal Triplets in Array
+
+// You are given a 0-indexed array of positive integers nums. Find the number of triplets (i, j, k) that meet the following conditions:
+
+// 0 <= i < j < k < nums.length
+// nums[i], nums[j], and nums[k] are pairwise distinct.
+// In other words, nums[i] != nums[j], nums[i] != nums[k], and nums[j] != nums[k].
+// Return the number of triplets that meet the conditions.
+
+// Example 1:
+
+// Input: nums = [4,4,2,4,3]
+// Output: 3
+// Explanation: The following triplets meet the conditions:
+// - (0, 2, 4) because 4 != 2 != 3
+// - (1, 2, 4) because 4 != 2 != 3
+// - (2, 3, 4) because 2 != 4 != 3
+// Since there are 3 triplets, we return 3.
+// Note that (2, 0, 4) is not a valid triplet because 2 > 0.
+// Example 2:
+
+// Input: nums = [1,1,1,1,1]
+// Output: 0
+// Explanation: No triplets meet the conditions so we return 0.
+
+function unequalTriplet(nums) {
+  let res = [];
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i; j < nums.length; j++) {
+      for (let k = j; k < nums.length; k++) {
+        if (nums[i] !== nums[j] && nums[i] !== nums[k] && nums[j] !== nums[k]) {
+          res.push([i, j, k]);
+        }
+      }
+    }
+  }
+  return res;
+}
+console.log(unequalTriplet([4, 4, 2, 4, 3]));
+console.log(unequalTriplet([1, 1, 1, 1, 1]));
+//Time complexity:-O(n**2)
+
+//             <--------------------------------------------------->
+//Q count Square Sum Triples
+// A square triple (a,b,c) is a triple where a, b, and c are integers and a2 + b2 = c2.
+
+// Given an integer n, return the number of square triples such that 1 <= a, b, c <= n.
+
+// Example 1:
+
+// Input: n = 5
+// Output: 2
+// Explanation: The square triples are (3,4,5) and (4,3,5).
+// Example 2:
+
+// Input: n = 10
+// Output: 4
+// Explanation: The square triples are (3,4,5), (4,3,5), (6,8,10), and (8,6,10).
+
+//Brute Approach
+function countTriples(n) {
+  let count = 0;
+  for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= n; j++) {
+      for (let k = 1; k <= n; k++) {
+        if (i ** 2 + j ** 2 === k ** 2) {
+          count++;
+        }
+      }
+    }
+  }
+  return count;
+}
+console.log(countTriples(5));
+console.log(countTriples(10));
+//Time complexity:O(n**3)
+
+//Better Approach
+function countTriples(n) {
+  let count = 0;
+  for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (Number.isInteger(Math.sqrt(i * i + j * j))) {
+        if (Math.sqrt(i * i + j * j) <= n) {
+          count++;
+        }
+      }
+    }
+  }
+  return count;
+}
+console.log(countTriples(5));
+console.log(countTriples(10));
+//Time complexity:O(n**2)
+
+// ==================================================================================
