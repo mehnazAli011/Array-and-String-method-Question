@@ -728,3 +728,127 @@ console.log(countTriples(10));
 //Time complexity:O(n**2)
 
 // ==================================================================================
+//Q Find the intger Added to Array |
+// You are given two arrays of equal length, nums1 and nums2.
+
+// Each element in nums1 has been increased (or decreased in the case of negative) by an integer, represented by the variable x.
+
+// As a result, nums1 becomes equal to nums2. Two arrays are considered equal when they contain the same integers with the same frequencies.
+
+// Return the integer x.
+
+// Example 1:
+
+// Input: nums1 = [2,6,4], nums2 = [9,7,5]
+
+// Output: 3
+
+// Explanation:
+
+// The integer added to each element of nums1 is 3.
+
+// Example 2:
+
+// Input: nums1 = [10], nums2 = [5]
+
+// Output: -5
+
+// Explanation:
+
+// The integer added to each element of nums1 is -5.
+
+// Example 3:
+
+// Input: nums1 = [1,1,1,1], nums2 = [1,1,1,1]
+
+// Output: 0
+
+// Explanation:
+
+// The integer added to each element of nums1 is 0.
+//Brute Approach
+function addInteger(nums1, nums2) {
+  let sum1 = 0;
+  let sum2 = 0;
+  for (let i = 0; i < nums1.length; i++) {
+    sum1 = nums1[i];
+    sum2 = nums2[i];
+  }
+
+  let x = (sum2 - sum1) / nums1.length;
+  return x;
+}
+console.log(addInteger([2, 6, 4], [9, 7, 5]));
+console.log(addInteger([10], [5]));
+console.log(addInteger([1, 1, 1, 1], [1, 1, 1, 1]));
+//Time complexity:O(n)
+
+//with method
+function addInteger(nums1, nums2) {
+  let sum1 = nums1.reduce((a, b) => a + b, 0);
+  let sum2 = nums2.reduce((a, b) => a + b, 0);
+  let x = (sum2 - sum1) / nums1.length;
+  return x;
+}
+console.log(addInteger([2, 6, 4], [9, 7, 5]));
+console.log(addInteger([10], [5]));
+console.log(addInteger([1, 1, 1, 1], [1, 1, 1, 1]));
+
+//with method
+function addInteger(nums1, nums2) {
+  return Math.max(...nums2) - Math.max(...nums1);
+}
+console.log(addInteger([2, 6, 4], [9, 7, 5]));
+console.log(addInteger([10], [5]));
+console.log(addInteger([1, 1, 1, 1], [1, 1, 1, 1]));
+
+// ==================================================================================
+//  Q Harshad Number
+// An integer divisible by the sum of its digits is said to be a Harshad number. You are given an integer x. Return the sum of the digits of x if x is a Harshad number, otherwise, return -1.
+
+// Example 1:
+
+// Input: x = 18
+
+// Output: 9
+
+// Explanation:
+
+// The sum of digits of x is 9. 18 is divisible by 9. So 18 is a Harshad number and the answer is 9.
+
+// Example 2:
+
+// Input: x = 23
+
+// Output: -1
+
+// Explanation:
+
+// The sum of digits of x is 5. 23 is not divisible by 5. So 23 is not a Harshad number and the answer is -1.
+//Brute Approch
+function sumOfTheDigitsOfHarshadNumb(x) {
+  let n=x;
+  let sum = 0;
+  while(n>0){
+    lastDigit = n%10;
+    sum+=lastDigit;
+    n=Math.floor(n/10)
+  }
+  return x%sum==0?sum:-1
+}
+console.log(sumOfTheDigitsOfHarshadNumb(18));
+console.log(sumOfTheDigitsOfHarshadNumb(23));
+
+function sumOfTheDigitsOfHarshadNumb(x) {
+  let arr = x.toString().split("");
+  console.log(arr);
+
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += Number(arr[i]);
+  }
+  return x % sum == 0 ? sum : -1;
+}
+console.log(sumOfTheDigitsOfHarshadNumb(18));
+console.log(sumOfTheDigitsOfHarshadNumb(23));
+// ============================================================================
