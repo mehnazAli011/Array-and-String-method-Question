@@ -417,3 +417,79 @@ console.log(maxNumberOfBalloons("balon"));
 //Time compliexity:O(n**2)
 
 // <---------------------------------------------------------------->
+//Q Greatest English Letter in upper and lower Case
+
+// Given a string of English letters s, return the greatest English letter which occurs as both a lowercase and uppercase letter in s. The returned letter should be in uppercase. If no such letter exists, return an empty string.
+
+// An English letter b is greater than another letter a if b appears after a in the English alphabet.
+
+// Example 1:
+
+// Input: s = "lEeTcOdE"
+// Output: "E"
+// Explanation:
+// The letter 'E' is the only letter to appear in both lower and upper case.
+// Example 2:
+
+// Input: s = "arRAzFif"
+// Output: "R"
+// Explanation:
+// The letter 'R' is the greatest letter to appear in both lower and upper case.
+// Note that 'A' and 'F' also appear in both lower and upper case, but 'R' is greater than 'F' or 'A'.
+
+//Brute Approach
+function upperAndLowerCaseLetter(s) {
+  let store = [];
+  for (let i = 0; i < s.length; i++) {
+    if (s.includes(s[i].toUpperCase()) && s.includes(s[i].toLowerCase())) {
+      store.push(s[i].toUpperCase().charCodeAt());
+    }
+  }
+  return store.length === 0 ? "" : String.fromCharCode(Math.max(...store));
+}
+console.log(upperAndLowerCaseLetter("lEeTcOdE"));
+console.log(upperAndLowerCaseLetter("arRAzFif"));
+console.log(upperAndLowerCaseLetter("AbCdEfGhIjK"));
+
+//           <---------------------------------------------------------------->
+//Q.count special character || (pending)
+// You are given a string word. A letter c is called special if it appears both in lowercase and uppercase in word, and every lowercase occurrence of c appears before the first uppercase occurrence of c.
+
+// Return the number of special letters in word.
+
+// Example 1:
+
+// Input: word = "aaAbcBC"
+
+// Output: 3
+
+// Explanation:
+
+// The special characters are 'a', 'b', and 'c'.
+
+// Example 2:
+
+// Input: word = "abc"
+
+function speicalChar(word) {
+  let uniqueChar = Array.from(new Set(word)).join("");
+  console.log(uniqueChar);
+
+  let result = "";
+
+  for (let i = 0; i < uniqueChar.length; i++) {
+    if (
+      uniqueChar.includes(uniqueChar[i].toUpperCase()) &&
+      uniqueChar.includes(uniqueChar[i].toLowerCase())
+    ) {
+      result += uniqueChar[i];
+    }
+  }
+  return result.length / 2;
+}
+console.log(speicalChar("aaAbcBC"));
+console.log(speicalChar("abc"));
+console.log(speicalChar("AbBCab"));
+console.log(speicalChar("beE"));
+
+//           <---------------------------------------------------------------->
