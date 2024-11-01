@@ -493,3 +493,100 @@ console.log(speicalChar("AbBCab"));
 console.log(speicalChar("beE"));
 
 //           <---------------------------------------------------------------->
+// Given a string s consisting of only the characters 'a' and 'b', return true if every 'a' appears before every 'b' in the string. Otherwise, return false.
+
+// Example 1:
+
+// Input: s = "aaabbb"
+// Output: true
+// Explanation:
+// The 'a's are at indices 0, 1, and 2, while the 'b's are at indices 3, 4, and 5.
+// Hence, every 'a' appears before every 'b' and we return true.
+// Example 2:
+
+// Input: s = "abab"
+// Output: false
+// Explanation:
+// There is an 'a' at index 2 and a 'b' at index 1.
+// Hence, not every 'a' appears before every 'b' and we return false.
+// Example 3:
+
+// Input: s = "bbb"
+// Output: true
+// Explanation:
+// There are no 'a's, hence, every 'a' appears before every 'b' and we return true.
+
+function checkString(s) {
+  for (let i = 0; i < s.length; i++) {
+    if (
+      (s[i] === "b" && s[i + 1] === "a") ||
+      (s[i] === "B" && s[i + 1] === "A") ||
+      (s[i] === "b" && s[i + 1] === "A") ||
+      (s[i] === "B" && s[i + 1] === "a")
+    ) {
+      return false;
+    }
+  }
+  return true;
+}
+console.log(checkString("aaabbb"));
+console.log(checkString("abab"));
+console.log(checkString("bbb"));
+console.log(checkString("aaa"));
+console.log(checkString("AB"));
+console.log(checkString("bA"));
+
+//           <---------------------------------------------------------------->
+//Q Capitalize the Title
+// You are given a string title consisting of one or more words separated by a single space, where each word consists of English letters. Capitalize the string by changing the capitalization of each word such that:
+
+// If the length of the word is 1 or 2 letters, change all letters to lowercase.
+// Otherwise, change the first letter to uppercase and the remaining letters to lowercase.
+// Return the capitalized title.
+
+// Example 1:
+
+// Input: title = "capiTalIze tHe titLe"
+// Output: "Capitalize The Title"
+// Explanation:
+// Since all the words have a length of at least 3, the first letter of each word is uppercase, and the remaining letters are lowercase.
+// Example 2:
+
+// Input: title = "First leTTeR of EACH Word"
+// Output: "First Letter of Each Word"
+// Explanation:
+// The word "of" has length 2, so it is all lowercase.
+// The remaining words have a length of at least 3, so the first letter of each remaining word is uppercase, and the remaining letters are lowercase.
+// Example 3:
+
+// Input: title = "i lOve leetcode"
+// Output: "i Love Leetcode"
+// Explanation:
+// The word "i" has length 1, so it is lowercase.
+// The remaining words have a length of at least 3, so the first letter of each remaining word is uppercase, and the remaining letters are lowercase.
+
+function capitalizeTitle(title) {
+  let result = [];
+  let arr = title.split(" ");
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].length >= 3) {
+      result[i] = arr[i][0].toUpperCase() + arr[i].slice(1).toLowerCase();
+    } else {
+      result[i] = arr[i].toLowerCase();
+    }
+  }
+  return result.join(" ");
+}
+console.log(capitalizeTitle("capiTalIze tHe titLe"));
+console.log(capitalizeTitle("First leTTeR of EACH Word"));
+console.log(capitalizeTitle("i lOve leetcode"));
+
+//with method
+function capitalizeTitle(title) {
+  return title.split(' ').map(item => item.length <= 2 ? item.toLowerCase() : `${item[0].toUpperCase()}${item.slice(1).toLowerCase()}`).join(' ');
+}
+console.log(capitalizeTitle("capiTalIze tHe titLe"));
+console.log(capitalizeTitle("First leTTeR of EACH Word"));
+console.log(capitalizeTitle("i lOve leetcode"));
+
+//       <------------------------------------------------------->
