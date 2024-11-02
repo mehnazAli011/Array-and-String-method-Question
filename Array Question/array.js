@@ -827,14 +827,14 @@ console.log(addInteger([1, 1, 1, 1], [1, 1, 1, 1]));
 // The sum of digits of x is 5. 23 is not divisible by 5. So 23 is not a Harshad number and the answer is -1.
 //Brute Approch
 function sumOfTheDigitsOfHarshadNumb(x) {
-  let n=x;
+  let n = x;
   let sum = 0;
-  while(n>0){
-    lastDigit = n%10;
-    sum+=lastDigit;
-    n=Math.floor(n/10)
+  while (n > 0) {
+    lastDigit = n % 10;
+    sum += lastDigit;
+    n = Math.floor(n / 10);
   }
-  return x%sum==0?sum:-1
+  return x % sum == 0 ? sum : -1;
 }
 console.log(sumOfTheDigitsOfHarshadNumb(18));
 console.log(sumOfTheDigitsOfHarshadNumb(23));
@@ -852,3 +852,62 @@ function sumOfTheDigitsOfHarshadNumb(x) {
 console.log(sumOfTheDigitsOfHarshadNumb(18));
 console.log(sumOfTheDigitsOfHarshadNumb(23));
 // ============================================================================
+// Q SubArray Sum Equlas K
+
+// Given an array of integers nums and an integer k, return the total number of subarrays whose sum equals to k.
+
+// A subarray is a contiguous non-empty sequence of elements within an array.
+
+// Example 1:
+
+// Input: nums = [1,1,1], k = 2
+// Output: 2
+// Example 2:
+
+// Input: nums = [1,2,3], k = 3
+// Output: 2
+
+//Brute Approach
+// function subarraySum(nums, k) {
+//   let count = 0;
+//   for (let i = 0; i < nums.length; i++) {
+//     let sum = 0;
+//     for (let j = i; j < nums.length; j++) {
+//       sum += nums[j];
+//       if (sum === k) {
+//         count++;
+//       }
+//     }
+//   }
+//   return count;
+// }
+// console.log(subarraySum([1, 1, 1], 2));
+// console.log(subarraySum([1, 2, 3], 3));
+// console.log(subarraySum([1, 2, 1, 2, 1], 3));
+//time complexity:O(n**2)
+
+//Better Approach
+function subarraySum(nums, k) {
+  let sum = 0;
+  const sumMap = new Map();
+  sumMap.set(0, 1); // Initialize with sum 0 to handle the case where the subarray starts from index 0
+
+  for (let num of nums) {
+    sum += num;
+
+    // Check if there exists a prefix sum that when subtracted from the current sum equals k
+    if (sumMap.has(sum - k)) {
+      count += sumMap.get(sum - k);
+    }
+
+    // Update the sumMap with the current sum
+    sumMap.set(sum, (sumMap.get(sum) || 0) + 1);
+  }
+
+  return count;
+}
+console.log(subarraySum([1, 1, 1], 2));
+console.log(subarraySum([1, 2, 3], 3));
+console.log(subarraySum([1, 2, 1, 2, 1], 3));
+console.log(subarraySum([1], 0));
+//time complexity:O(n)
