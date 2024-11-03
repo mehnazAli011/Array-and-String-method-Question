@@ -868,26 +868,27 @@ console.log(sumOfTheDigitsOfHarshadNumb(23));
 // Output: 2
 
 //Brute Approach
-// function subarraySum(nums, k) {
-//   let count = 0;
-//   for (let i = 0; i < nums.length; i++) {
-//     let sum = 0;
-//     for (let j = i; j < nums.length; j++) {
-//       sum += nums[j];
-//       if (sum === k) {
-//         count++;
-//       }
-//     }
-//   }
-//   return count;
-// }
-// console.log(subarraySum([1, 1, 1], 2));
-// console.log(subarraySum([1, 2, 3], 3));
-// console.log(subarraySum([1, 2, 1, 2, 1], 3));
+function subarraySum(nums, k) {
+  let count = 0;
+  for (let i = 0; i < nums.length; i++) {
+    let sum = 0;
+    for (let j = i; j < nums.length; j++) {
+      sum += nums[j];
+      if (sum === k) {
+        count++;
+      }
+    }
+  }
+  return count;
+}
+console.log(subarraySum([1, 1, 1], 2));
+console.log(subarraySum([1, 2, 3], 3));
+console.log(subarraySum([1, 2, 1, 2, 1], 3));
 //time complexity:O(n**2)
 
 //Better Approach
 function subarraySum(nums, k) {
+  let count = 0;
   let sum = 0;
   const sumMap = new Map();
   sumMap.set(0, 1); // Initialize with sum 0 to handle the case where the subarray starts from index 0
@@ -910,4 +911,129 @@ console.log(subarraySum([1, 1, 1], 2));
 console.log(subarraySum([1, 2, 3], 3));
 console.log(subarraySum([1, 2, 1, 2, 1], 3));
 console.log(subarraySum([1], 0));
+// time complexity:O(n)
+
+//Optimal Approach
+function subarraySum(nums, k) {
+  let count = 0;
+  let left = 0;
+  let right = 0;
+  let sum = nums[0];
+  while (right < nums.length) {
+    while (left <= right && sum > k) {
+      sum -= nums[left];
+      left++;
+    }
+    if (sum === k) {
+      count++;
+    }
+    right++;
+    if (right < nums.length) sum += nums[right];
+  }
+  return count;
+}
+console.log(subarraySum([1, 1, 1], 2));
+console.log(subarraySum([1, 2, 3], 3));
+console.log(subarraySum([1, 2, 1, 2, 1], 3));
+console.log(subarraySum([1], 0));
+// time complexity:O(2n)
+
+//              <------------------------------------------------>
+
+//Q subarray product less then k
+
+// Given an array of integers nums and an integer k, return the number of contiguous subarrays where the product of all the elements in the subarray is strictly less than k.
+
+// Example 1:
+
+// Input: nums = [10,5,2,6], k = 100
+// Output: 8
+// Explanation: The 8 subarrays that have product less than 100 are:
+// [10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6]
+// Note that [10, 5, 2] is not included as the product of 100 is not strictly less than k.
+// Example 2:
+
+// Input: nums = [1,2,3], k = 0
+// Output: 0
+
+// //Brute Approach
+function subArrayProduct(nums, k) {
+  let count = 0;
+  for (let i = 0; i < nums.length; i++) {
+    let product = 1;
+    for (let j = i; j < nums.length; j++) {
+      product *= nums[j];
+      if (product < k) {
+        count++;
+      }
+    }
+  }
+  return count;
+}
+console.log(subArrayProduct([10, 5, 2, 6], 100));
+console.log(subArrayProduct([1, 2, 3], 0));
+// //Time complexity:O(n**2)
+
+function subArrayProduct(nums, k) {
+  let count = 0;
+  let product = 1;
+  let left = 0;
+
+  for (let right = 0; right < nums.length; right++) {
+    product *= nums[right];
+
+    while (left <= right && product >= k) {
+      product /= nums[left];
+      left++;
+    }
+
+    // Count the number of subarrays ending at 'right' which have a product > k
+    count += right - left + 1;
+  }
+
+  return count;
+}
+console.log(subArrayProduct([10, 5, 2, 6], 100));
+console.log(subArrayProduct([1, 2, 3], 0));
 //time complexity:O(n)
+
+//              <------------------------------------------------>
+
+//Q can place Flowers
+
+// You have a long flowerbed in which some of the plots are planted, and some are not. However, flowers cannot be planted in adjacent plots.
+
+// Given an integer array flowerbed containing 0's and 1's, where 0 means empty and 1 means not empty, and an integer n, return true if n new flowers can be planted in the flowerbed without violating the no-adjacent-flowers rule and false otherwise.
+
+// Example 1:
+
+// Input: flowerbed = [1,0,0,0,1], n = 1
+// Output: true
+// Example 2:
+
+// Input: flowerbed = [1,0,0,0,1], n = 2
+// Output: false
+
+function canPlaceFlowers(flowerbed, n) {
+  if (n === 0) {
+    return true;
+  }
+  let count = 0;
+  for (let i = 0; i < flowerbed.length; i++) {
+    if (
+      flowerbed[i] === 0 &&
+      (i === 0 || flowerbed[i - 1] === 0) && // Check left boundary
+      (i === flowerbed.length - 1 || flowerbed[i + 1] === 0)
+    ) {
+      // Check right boundary
+      {
+        flowerbed[i] = 1;
+        count++;
+      }
+    }
+  }
+  return count >= n;
+}
+console.log(canPlaceFlowers([1, 0, 0, 0, 1], 1));
+console.log(canPlaceFlowers([1, 0, 0, 0, 1], 2));
+console.log(canPlaceFlowers([1, 0, 0, 0, 0, 1], 2));

@@ -583,10 +583,16 @@ console.log(capitalizeTitle("i lOve leetcode"));
 
 //with method
 function capitalizeTitle(title) {
-  return title.split(' ').map(item => item.length <= 2 ? item.toLowerCase() : `${item[0].toUpperCase()}${item.slice(1).toLowerCase()}`).join(' ');
+  return title
+    .split(" ")
+    .map((item) =>
+      item.length <= 2
+        ? item.toLowerCase()
+        : `${item[0].toUpperCase()}${item.slice(1).toLowerCase()}`
+    )
+    .join(" ");
 }
 console.log(capitalizeTitle("capiTalIze tHe titLe"));
 console.log(capitalizeTitle("First leTTeR of EACH Word"));
 console.log(capitalizeTitle("i lOve leetcode"));
-
-//       <------------------------------------------------------->
+//  <------------------------------------------------------->
