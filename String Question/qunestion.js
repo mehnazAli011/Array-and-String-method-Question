@@ -596,3 +596,36 @@ console.log(capitalizeTitle("capiTalIze tHe titLe"));
 console.log(capitalizeTitle("First leTTeR of EACH Word"));
 console.log(capitalizeTitle("i lOve leetcode"));
 //  <------------------------------------------------------->
+
+
+// Reverse String |||
+// Given a string s, reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.
+
+// Example 1:
+
+// Input: s = "Let's take LeetCode contest"
+// Output: "s'teL ekat edoCteeL tsetnoc"
+// Example 2:
+
+// Input: s = "Mr Ding"
+// Output: "rM gniD"
+
+
+//Brute Approach
+function reverseStr(s) {
+  let arr = s.split(" ");
+
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = arr[i].split("").reverse().join("");
+  }
+  return arr.join(" ");
+}
+console.log(reverseStr("Let's take LeetCode contest"));
+console.log(reverseStr("Mr Ding"));
+//Time complexity:O(n)
+
+function reverseStr(s) {
+  return s.split(" ").map(char=>char.split("").reverse().join("")).join(" ")
+}
+console.log(reverseStr("Let's take LeetCode contest"));
+console.log(reverseStr( "s'teL ekat edoCteeL tsetnoc"));
