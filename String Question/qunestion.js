@@ -597,7 +597,6 @@ console.log(capitalizeTitle("First leTTeR of EACH Word"));
 console.log(capitalizeTitle("i lOve leetcode"));
 //  <------------------------------------------------------->
 
-
 // Reverse String |||
 // Given a string s, reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.
 
@@ -609,7 +608,6 @@ console.log(capitalizeTitle("i lOve leetcode"));
 
 // Input: s = "Mr Ding"
 // Output: "rM gniD"
-
 
 //Brute Approach
 function reverseStr(s) {
@@ -625,7 +623,51 @@ console.log(reverseStr("Mr Ding"));
 //Time complexity:O(n)
 
 function reverseStr(s) {
-  return s.split(" ").map(char=>char.split("").reverse().join("")).join(" ")
+  return s
+    .split(" ")
+    .map((char) => char.split("").reverse().join(""))
+    .join(" ");
 }
 console.log(reverseStr("Let's take LeetCode contest"));
-console.log(reverseStr( "s'teL ekat edoCteeL tsetnoc"));
+console.log(reverseStr("s'teL ekat edoCteeL tsetnoc"));
+
+//              <--------------------------------------->
+
+//Q Detect capital
+
+// We define the usage of capitals in a word to be right when one of the following cases holds:
+
+// All letters in this word are capitals, like "USA".
+// All letters in this word are not capitals, like "leetcode".
+// Only the first letter in this word is capital, like "Google".
+// Given a string word, return true if the usage of capitals in it is right.
+
+// Example 1:
+
+// Input: word = "USA"
+// Output: true
+// Example 2:
+
+// Input: word = "FlaG"
+// Output: false
+
+//Brute Approach
+function detectCapitalUse(word) {
+  const firstLetter = word[0]; // Get the first letter
+  const restOfWord = word.slice(1); // Get the rest of the word
+
+  // Check if all letters are uppercase
+  const allUppercase = word === word.toUpperCase();
+  // Check if all letters are lowercase
+  const allLowercase = word === word.toLowerCase();
+  // Check if the first letter is uppercase and the rest are lowercase
+  const firstUpperRestLowercase =
+    firstLetter === firstLetter.toUpperCase() &&
+    restOfWord === restOfWord.toLowerCase();
+
+  // Return true if any of the conditions for valid capitalization are met
+  return allUppercase || allLowercase || firstUpperRestLowercase;
+}
+console.log(detectCapitalUse("USA"));
+console.log(detectCapitalUse("FlaG"));
+//time complexity:O(n)
