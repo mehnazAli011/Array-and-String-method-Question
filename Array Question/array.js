@@ -1072,20 +1072,69 @@ console.log(canPlaceFlowers([1, 0, 0, 0, 0, 1], 2));
 //time complexity:O(n**2)
 
 function subarraySumDivibleByK(nums, k) {
-  let prfixRem = 0;
-  let res = 0;
-  let map = {};
-  for (let i = 0; i < k; i++) {
-    map[i] = 0;
-  }
-  map[0] = 1;
+  let freq = new Array(k).fill(0); //
+  freq[0] = 1;
 
-  for (let num of nums) {
-    prfixRem = (prfixRem + ((num % k) + k)) % k;
-    res += map[prfixRem];
-    map[prfixRem]++;
+  let sum = 0;
+  // The count of wanted subarrays, whose Sum%k= zero
+  let count = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    sum = sum + nums[i];
+
+    let remainder = sum % k;
+
+    if (remainder < 0) remainder += k;
+
+    count += freq[remainder];
+    freq[remainder]++;
   }
-  return res;
+
+  return count;
 }
 console.log(subarraySumDivibleByK([4, 5, 0, -2, -3, 1], 5));
 console.log(subarraySumDivibleByK([5], 9));
+//time complexity:O(n)
+//           <-------------------------------------------------->
+//Q Count the Number of vowel String in Range
+
+// You are given a 0-indexed array of string words and two integers left and right.
+
+// A string is called a vowel string if it starts with a vowel character and ends with a vowel character where vowel characters are 'a', 'e', 'i', 'o', and 'u'.
+
+// Return the number of vowel strings words[i] where i belongs to the inclusive range [left, right].
+
+// Example 1:
+
+// Input: words = ["are","amy","u"], left = 0, right = 2
+// Output: 2
+// Explanation:
+// - "are" is a vowel string because it starts with 'a' and ends with 'e'.
+// - "amy" is not a vowel string because it does not end with a vowel.
+// - "u" is a vowel string because it starts with 'u' and ends with 'u'.
+// The number of vowel strings in the mentioned range is 2.
+// Example 2:
+
+// Input: words = ["hey","aeo","mu","ooo","artro"], left = 1, right = 4
+// Output: 3
+// Explanation:
+// - "aeo" is a vowel string because it starts with 'a' and ends with 'o'.
+// - "mu" is not a vowel string because it does not start with a vowel.
+// - "ooo" is a vowel string because it starts with 'o' and ends with 'o'.
+// - "artro" is a vowel string because it starts with 'a' and ends with 'o'.
+// The number of vowel strings in the mentioned range is 3.
+
+function countVowels(words, left, right) {
+  let count = 0;
+  let vowels = "aieou";
+  for (let i = left; i <= right; i++) {
+    let x = vowels.includes(words[i][0]) && vowels.includes(words[i].at(-1));
+    if (x === true) {
+      count++;
+    }
+  }
+  return count;
+}
+console.log(countVowels(["are", "amy", "u"], 0, 2));
+console.log(countVowels(["hey", "aeo", "mu", "ooo", "artro"], 1, 4));
+//time complexity:O(n)
