@@ -1138,3 +1138,90 @@ function countVowels(words, left, right) {
 console.log(countVowels(["are", "amy", "u"], 0, 2));
 console.log(countVowels(["hey", "aeo", "mu", "ooo", "artro"], 1, 4));
 //time complexity:O(n)
+
+//           <-------------------------------------------------->
+//Q Binary subarrays with sum
+
+// Given a binary array nums and an integer goal, return the number of non-empty subarrays with a sum goal.
+
+// A subarray is a contiguous part of the array.
+
+// Example 1:
+
+// Input: nums = [1,0,1,0,1], goal = 2
+// Output: 4
+// Explanation: The 4 subarrays are bolded and underlined below:
+// [1,0,1,0,1]
+// [1,0,1,0,1]
+// [1,0,1,0,1]
+// [1,0,1,0,1]
+// Example 2:
+
+// Input: nums = [0,0,0,0,0], goal = 0
+// Output: 15
+
+// brute Approach
+function numSubarraysWithSum(nums, goal) {
+  let count = 0;
+  for (let i = 0; i < nums.length; i++) {
+    let sum = 0;
+    for (let j = i; j < nums.length; j++) {
+      sum += nums[j];
+      if (sum === goal) {
+        count++;
+      }
+    }
+  }
+  return count;
+}
+console.log(numSubarraysWithSum([1, 0, 1, 0, 1], 2));
+console.log(numSubarraysWithSum([0, 0, 0, 0, 0], 0));
+//time complexity:O(n**2)
+
+//Better Approach
+function numSubarraysWithSum(nums, goal) {
+  let count = 0;
+  let sum = 0;
+  let prefixSum = new Map();
+  prefixSum.set(0, 1);
+  for (let num of nums) {
+    sum += num;
+    if (prefixSum.has(sum - goal)) {
+      count += prefixSum.get(sum - goal);
+    }
+    prefixSum.set(sum, (prefixSum.get(sum) || 0)+ 1);
+  }
+  return count;
+}
+
+console.log(numSubarraysWithSum([1, 0, 1, 0, 1], 2));
+console.log(numSubarraysWithSum([0, 0, 0, 0, 0], 0));
+//time complexity:O(n)
+//space complexity:O(n)
+
+//optimal Approach
+function numSubarraysWithSum(nums, goal) {
+  let count = 0;
+  let l = 0;
+  let sum = 0;
+  for (let r = 0; r < nums.length; r++) {
+    sum += nums[r];
+    while (sum > goal) {
+      sum -= nums[l];
+      l++;
+    }
+    if (sum === goal) {
+      count++;
+    }
+
+    let temp = l;
+    while (temp < r && nums[temp] === 0) {
+      count++;
+      temp++;
+    }
+  }
+  return count;
+}
+console.log(numSubarraysWithSum([1, 0, 1, 0, 1], 2));
+console.log(numSubarraysWithSum([0, 0, 0, 0, 0], 0));
+//time complexity:O(n)
