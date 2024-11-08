@@ -1189,7 +1189,7 @@ function numSubarraysWithSum(nums, goal) {
     if (prefixSum.has(sum - goal)) {
       count += prefixSum.get(sum - goal);
     }
-    prefixSum.set(sum, (prefixSum.get(sum) || 0)+ 1);
+    prefixSum.set(sum, (prefixSum.get(sum) || 0) + 1);
   }
   return count;
 }
@@ -1224,4 +1224,50 @@ function numSubarraysWithSum(nums, goal) {
 }
 console.log(numSubarraysWithSum([1, 0, 1, 0, 1], 2));
 console.log(numSubarraysWithSum([0, 0, 0, 0, 0], 0));
+//time complexity:O(n)
+//time complexity:O(n)
+
+//    <-------------------------------------------------------->
+
+//Q  longest substring wihtout repeating characters
+
+// Example 1:
+
+// Input: s = "abcabcbb"
+// Output: 3
+// Explanation: The answer is "abc", with the length of 3.
+// Example 2:
+
+// Input: s = "bbbbb"
+// Output: 1
+// Explanation: The answer is "b", with the length of 1.
+// Example 3:
+
+// Input: s = "pwwkew"
+// Output: 3
+// Explanation: The answer is "wke", with the length of 3.
+// Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+
+//optimal approach
+function longestSubString(s) {
+  let l = 0;
+  let r = 0;
+  let maxLength = 0;
+  let hash = {};
+  while (r < s.length) {
+    if (hash[s[r]] !== -1) {
+      if (hash[s[r]] >= l) {
+        l = hash[s[r]] + 1;
+      }
+    }
+    len = r - l + 1;
+    maxLength = Math.max(maxLength, len);
+    hash[s[r]] = r;
+    r++;
+  }
+  return maxLength;
+}
+console.log(longestSubString("abcabcbb"));
+console.log(longestSubString("bbbbb"));
+console.log(longestSubString("pwwkew"));
 //time complexity:O(n)
