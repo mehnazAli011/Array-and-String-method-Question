@@ -1227,6 +1227,30 @@ console.log(numSubarraysWithSum([0, 0, 0, 0, 0], 0));
 //time complexity:O(n)
 //time complexity:O(n)
 
+function numSubarraysWithSum(nums, goal) {
+  function solver(nums, goal) {
+  if (goal < 0) return 0;
+    let l = 0;
+    let r = 0;
+    let count = 0;
+    let sum = 0;
+    while (r < nums.length) {
+      sum += nums[r];
+      while (sum > goal) {
+        sum -= nums[l];
+        l++;
+      }
+      count += r - l + 1;
+      r++;
+    }
+    return count;
+  }
+  return solver(nums, goal) - solver(nums, goal- 1);
+}
+console.log(numSubarraysWithSum([1, 0, 1, 0, 1], 2));
+console.log(numSubarraysWithSum([0, 0, 0, 0, 0], 0));
+//time complexity:O(n)
+
 //    <-------------------------------------------------------->
 
 //Q  longest substring wihtout repeating characters
@@ -1271,3 +1295,75 @@ console.log(longestSubString("abcabcbb"));
 console.log(longestSubString("bbbbb"));
 console.log(longestSubString("pwwkew"));
 //time complexity:O(n)
+
+//               <------------------------------------------>
+//Q count the nice subarray
+
+// Given an array of integers nums and an integer k. A continuous subarray is called nice if there are k odd numbers on it.
+
+// Return the number of nice sub-arrays.
+
+// Example 1:
+
+// Input: nums = [1,1,2,1,1], k = 3
+// Output: 2
+// Explanation: The only sub-arrays with 3 odd numbers are [1,1,2,1] and [1,2,1,1].
+// Example 2:
+
+// Input: nums = [2,4,6], k = 1
+// Output: 0
+// Explanation: There are no odd numbers in the array.
+// Example 3:
+
+// Input: nums = [2,2,2,1,2,2,1,2,2,2], k = 2
+// Output: 16
+
+// Better Approach
+function countTheNiceSubArr(nums, k) {
+  let map = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] % 2 == 0) {
+      nums[i] = 0;
+    }
+  }
+  let count = 0;
+  let sum = 0;
+  map.set(0, 1);
+  for (let num of nums) {
+    sum += num;
+
+    if (map.has(sum - k)) {
+      count += map.get(sum - k);
+    }
+    map.set(sum, (map.get(sum) || 0) + 1);
+  }
+  return count;
+}
+console.log(countTheNiceSubArr([1, 1, 2, 1, 1], 3));
+console.log(countTheNiceSubArr([2, 4, 6], 1));
+console.log(countTheNiceSubArr([2, 2, 2, 1, 2, 2, 1, 2, 2, 2], 2));
+
+function countTheNiceSubArr(nums, k) {
+  function solver(nums, k) {
+    let l = 0;
+    let r = 0;
+    let count = 0;
+    let sum = 0;
+    while (r < nums.length) {
+      sum += nums[r] % 2;
+      while (sum > k) {
+        sum = sum - (nums[l] % 2);
+        l = l + 1;
+      }
+      count = count + r - l + 1;
+      r++;
+    }
+    return count;
+  }
+  return solver(nums, k) - solver(nums, k - 1);
+}
+console.log(countTheNiceSubArr([1, 1, 2, 1, 1], 3));
+console.log(countTheNiceSubArr([2, 4, 6], 1));
+console.log(countTheNiceSubArr([2, 2, 2, 1, 2, 2, 1, 2, 2, 2], 2));
+//time complexity:O(n)
+
