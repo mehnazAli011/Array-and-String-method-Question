@@ -1229,7 +1229,7 @@ console.log(numSubarraysWithSum([0, 0, 0, 0, 0], 0));
 
 function numSubarraysWithSum(nums, goal) {
   function solver(nums, goal) {
-  if (goal < 0) return 0;
+    if (goal < 0) return 0;
     let l = 0;
     let r = 0;
     let count = 0;
@@ -1245,7 +1245,7 @@ function numSubarraysWithSum(nums, goal) {
     }
     return count;
   }
-  return solver(nums, goal) - solver(nums, goal- 1);
+  return solver(nums, goal) - solver(nums, goal - 1);
 }
 console.log(numSubarraysWithSum([1, 0, 1, 0, 1], 2));
 console.log(numSubarraysWithSum([0, 0, 0, 0, 0], 0));
@@ -1367,3 +1367,120 @@ console.log(countTheNiceSubArr([2, 4, 6], 1));
 console.log(countTheNiceSubArr([2, 2, 2, 1, 2, 2, 1, 2, 2, 2], 2));
 //time complexity:O(n)
 
+// <--------------------------------------------------------------------------------->
+
+//Q Number of substrings Containning all three characters.
+// Given a string s consisting only of characters a, b and c.
+
+// Return the number of substrings containing at least one occurrence of all these characters a, b and c.
+
+// Example 1:
+
+// Input: s = "abcabc"
+// Output: 10
+// Explanation: The substrings containing at least one occurrence of the characters a, b and c are "abc", "abca", "abcab", "abcabc", "bca", "bcab", "bcabc", "cab", "cabc" and "abc" (again).
+// Example 2:
+
+// Input: s = "aaacb"
+// Output: 3
+// Explanation: The substrings containing at least one occurrence of the characters a, b and c are "aaacb", "aacb" and "acb".
+// Example 3:
+
+// Input: s = "abc"
+// Output: 1
+
+// function numberOfSubstrings(s) {
+//   let count = 0;
+//   let left = 0;
+//   let freq = { a: 0, b: 0, c: 0 };
+//   for (let right = 0; right < s.length; right++) {
+//     freq[s[right]]++;
+//     while (freq["a"] > 0 && freq["b"] > 0 && freq["c"] > 0) {
+//       count += s.length - right;
+//       freq[s[left]]--;
+//       left++;
+//     }
+//   }
+//   return count;
+// }
+// console.log(numberOfSubstrings("abcabc"));
+// console.log(numberOfSubstrings("aaacb"));
+// console.log(numberOfSubstrings("abc"));
+//time complexity:O(n)
+
+// Given a string word, return the sum of the number of vowels ('a', 'e', 'i', 'o', and 'u') in every substring of word.
+
+// A substring is a contiguous (non-empty) sequence of characters within a string.
+
+// Note: Due to the large constraints, the answer may not fit in a signed 32-bit integer. Please be careful during the calculations.
+function countVowels(s) {
+  let count = 0;
+  let left = 0;
+  let freq = { a: 0, e: 0, i: 0, o: 0, u: 0 };
+
+  for (let right = 0; right < s.length; right++) {
+    if ("aeiou".includes(s[right])) {
+      freq[s[right]]++;
+    }
+
+    while (
+      freq["a"] > 0 ||
+      freq["e"] > 0 ||
+      freq["i"] > 0 ||
+      freq["o"] > 0 ||
+      freq["u"] > 0
+    ) {
+      count += s.length - right;
+      freq[s[left]]--;
+      left++;
+    }
+  }
+
+  return count;
+}
+console.log(countVowels("aba")); //6
+console.log(countVowels("abc")); //3
+console.log(countVowels("ltcd")); //0
+
+//      <-------------------------------------------------------->
+
+//Q  Maximum diiferent between increasing elements
+// Given a 0-indexed integer array nums of size n, find the maximum difference between nums[i] and nums[j] (i.e., nums[j] - nums[i]), such that 0 <= i < j < n and nums[i] < nums[j].
+
+// Return the maximum difference. If no such i and j exists, return -1.
+
+// Example 1:
+
+// Input: nums = [7,1,5,4]
+// Output: 4
+// Explanation:
+// The maximum difference occurs with i = 1 and j = 2, nums[j] - nums[i] = 5 - 1 = 4.
+// Note that with i = 1 and j = 0, the difference nums[j] - nums[i] = 7 - 1 = 6, but i > j, so it is not valid.
+// Example 2:
+
+// Input: nums = [9,4,3,2]
+// Output: -1
+// Explanation:
+// There is no i and j such that i < j and nums[i] < nums[j].
+// Example 3:
+
+// Input: nums = [1,5,2,10]
+// Output: 9
+// Explanation:
+// The maximum difference occurs with i = 0 and j = 3, nums[j] - nums[i] = 10 - 1 = 9.
+
+function maximumDiff(nums) {
+  let res = [];
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i; j < nums.length; j++) {
+      if (nums[i] < nums[j]) {
+        res.push(nums[j] - nums[i]);
+      }
+    }
+  }
+  return res.length === 0 ? -1 : Math.max(...res);
+}
+console.log(maximumDiff([7, 1, 5, 4]));
+console.log(maximumDiff([9, 4, 3, 2]));
+console.log(maximumDiff([1, 5, 2, 10]));
+// time complexity:O(n**2)
