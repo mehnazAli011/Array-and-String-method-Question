@@ -1484,3 +1484,111 @@ console.log(maximumDiff([7, 1, 5, 4]));
 console.log(maximumDiff([9, 4, 3, 2]));
 console.log(maximumDiff([1, 5, 2, 10]));
 // time complexity:O(n**2)
+
+//Q Two Furthest Houses With Different Colors
+// There are n houses evenly lined up on the street, and each house is beautifully painted. You are given a 0-indexed integer array colors of length n, where colors[i] represents the color of the ith house.
+
+// Return the maximum distance between two houses with different colors.
+
+// The distance between the ith and jth houses is abs(i - j), where abs(x) is the absolute value of x.
+
+// Example 1:
+
+// Input: colors = [1,1,1,6,1,1,1]
+// Output: 3
+// Explanation: In the above image, color 1 is blue, and color 6 is red.
+// The furthest two houses with different colors are house 0 and house 3.
+// House 0 has color 1, and house 3 has color 6. The distance between them is abs(0 - 3) = 3.
+// Note that houses 3 and 6 can also produce the optimal answer.
+// Example 2:
+
+// Input: colors = [1,8,3,8,3]
+// Output: 4
+// Explanation: In the above image, color 1 is blue, color 8 is yellow, and color 3 is green.
+// The furthest two houses with different colors are house 0 and house 4.
+// House 0 has color 1, and house 4 has color 3. The distance between them is abs(0 - 4) = 4.
+// Example 3:
+
+// Input: colors = [0,1]
+// Output: 1
+// Explanation: The furthest two houses with different colors are house 0 and house 1.
+// House 0 has color 0, and house 1 has color 1. The distance between them is abs(0 - 1) = 1.
+
+function maxDistance(colors) {
+  let max = 0;
+  for (let i = 0; i < colors.length; i++) {
+    for (let j = 1; j < colors.length; j++) {
+      if (colors[i] !== colors[j]) {
+        x = j - i;
+        if (x > max) {
+          max = x;
+        }
+      }
+    }
+  }
+  return max;
+}
+console.log(maxDistance([1, 1, 1, 6, 1, 1, 1]));
+console.log(maxDistance([1, 8, 3, 8, 3]));
+console.log(maxDistance([0, 1]));
+console.log(maxDistance([100, 0]));
+//time complexity:O(n**2)
+
+//Better Approach
+function maxDistance(colors) {
+  let i = 0;
+  let n = colors.length;
+  let j = n - 1;
+  while (colors[0] === colors[j]) {
+    j--;
+  }
+  while (colors[i] === colors[n - 1]) {
+    i++;
+  }
+  return Math.max(j, n - 1 - i);
+}
+console.log(maxDistance([1, 1, 1, 6, 1, 1, 1]));
+console.log(maxDistance([1, 8, 3, 8, 3]));
+console.log(maxDistance([0, 1]));
+console.log(maxDistance([100, 0]));
+//time complexity:O(n)
+
+//              <----------------------------------------------->
+
+//Q Replace Elements with Greatest Element on Right side
+
+// Given an array arr, replace every element in that array with the greatest element among the elements to its right, and replace the last element with -1.
+
+// After doing so, return the array.
+
+// Example 1:
+
+// Input: arr = [17,18,5,4,6,1]
+// Output: [18,6,6,6,1,-1]
+// Explanation:
+// - index 0 --> the greatest element to the right of index 0 is index 1 (18).
+// - index 1 --> the greatest element to the right of index 1 is index 4 (6).
+// - index 2 --> the greatest element to the right of index 2 is index 4 (6).
+// - index 3 --> the greatest element to the right of index 3 is index 4 (6).
+// - index 4 --> the greatest element to the right of index 4 is index 5 (1).
+// - index 5 --> there are no elements to the right of index 5, so we put -1.
+// Example 2:
+
+// Input: arr = [400]
+// Output: [-1]
+// Explanation: There are no elements to the right of index 0.
+
+
+function replaceElements(arr) {
+  let maxRight = -1;
+  for (let i = arr.length - 1; i >= 0; i--) {
+    let curr = arr[i];
+    arr[i] = maxRight;
+    maxRight = Math.max(curr, maxRight);
+  }
+  return arr;
+}
+
+console.log(replaceElements([17, 18, 5, 4, 6, 1]));
+console.log(replaceElements([400]));
+// //time complexity:O(n)
