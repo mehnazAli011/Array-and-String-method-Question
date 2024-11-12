@@ -1578,7 +1578,6 @@ console.log(maxDistance([100, 0]));
 // Output: [-1]
 // Explanation: There are no elements to the right of index 0.
 
-
 function replaceElements(arr) {
   let maxRight = -1;
   for (let i = arr.length - 1; i >= 0; i--) {
@@ -1592,3 +1591,5 @@ function replaceElements(arr) {
 console.log(replaceElements([17, 18, 5, 4, 6, 1]));
 console.log(replaceElements([400]));
 // //time complexity:O(n)
+
+//           <-------------------------------------------------->
