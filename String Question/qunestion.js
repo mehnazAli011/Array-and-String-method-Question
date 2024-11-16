@@ -862,4 +862,53 @@ function finishAllMove(moves) {
 }
 console.log(finishAllMove("UD"));
 console.log(finishAllMove("LL"));
-//time complexity:O(n)
+// //time complexity:O(n)
+
+// function canBeEqual(s1, s2) {
+//   let count = 0;
+//   let arr1 = s1.split("");
+//   let arr2 = s2.split("");
+//   for (let i = 0; i < arr2.length; i++) {
+//     if (arr1[i] !== arr2[i]) {
+//       count++;
+//     }
+//   }
+//   return count;
+// }
+// console.log(canBeEqual("abcd", "cdab"));
+// console.log(canBeEqual("abcd", "dacb"));
+
+//               <------------------------------------------------->
+
+// Q Remove Trailing Zero From a string
+// Given a positive integer num represented as a string, return the integer num without trailing zeros as a string.
+
+// Example 1:
+
+// Input: num = "51230100"
+// Output: "512301"
+// Explanation: Integer "51230100" has 2 trailing zeros, we remove them and return integer "512301".
+// Example 2:
+
+// Input: num = "123"
+// Output: "123"
+// Explanation: Integer "123" has no trailing zeros, we return integer "123".
+
+function removeTrailingZeros(num) {
+  let index = num
+    .split("")
+    .reverse()
+    .findIndex((elm) => elm !== "0");
+  if (index === -1) return num;
+  return num.slice(0, num.length - index);
+}
+console.log(removeTrailingZeros("51230100"));
+console.log(removeTrailingZeros("123"));
+console.log(removeTrailingZeros("1720865079269529096765717822459"));
+
+function removeTrailingZeros(num) {
+  return num.replace(/0+$/, "");
+}
+console.log(removeTrailingZeros("51230100"));
+console.log(removeTrailingZeros("123"));
+console.log(removeTrailingZeros("1720865079269529096765717822459"));
