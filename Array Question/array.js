@@ -1716,3 +1716,118 @@ function maxSum(nums, k) {
 console.log(maxSum([1, 2, 3, 4, 5], 3));
 console.log(maxSum([5, 5, 5], 2));
 //time compleixty:O(n)
+
+//Q Minimum number of charis in a waiting Room
+// You are given a string s. Simulate events at each second i:
+
+// If s[i] == 'E', a person enters the waiting room and takes one of the chairs in it.
+// If s[i] == 'L', a person leaves the waiting room, freeing up a chair.
+// Return the minimum number of chairs needed so that a chair is available for every person who enters the waiting room given that it is initially empty.
+
+// Example 1:
+
+// Input: s = "EEEEEEE"
+
+// Output: 7
+
+// Explanation:
+
+// After each second, a person enters the waiting room and no person leaves it. Therefore, a minimum of 7 chairs is needed.
+
+// Example 2:
+
+// Input: s = "ELELEEL"
+
+// Output: 2
+
+// Explanation:
+
+// Let's consider that there are 2 chairs in the waiting room. The table below shows the state of the waiting room at each second.
+
+// Second	Event	People in the Waiting Room	Available Chairs
+// 0	Enter	1	1
+// 1	Leave	0	2
+// 2	Enter	1	1
+// 3	Leave	0	2
+// 4	Enter	1	1
+// 5	Enter	2	0
+// 6	Leave	1	1
+// Example 3:
+
+// Input: s = "ELEELEELLL"
+
+// Output: 3
+
+// Explanation:
+
+// Let's consider that there are 3 chairs in the waiting room. The table below shows the state of the waiting room at each second.
+
+// Second	Event	People in the Waiting Room	Available Chairs
+// 0	Enter	1	2
+// 1	Leave	0	3
+// 2	Enter	1	2
+// 3	Enter	2	1
+// 4	Leave	1	2
+// 5	Enter	2	1
+// 6	Enter	3	0
+// 7	Leave	2	1
+// 8	Leave	1	2
+// 9	Leave	0	3
+
+function minimumChairs(s) {
+  let count = 0;
+  let max = 0;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === "E") {
+      count++;
+    }
+    if (s[i] === "L") {
+      count--;
+    }
+    max = Math.max(count, max);
+  }
+  return max;
+}
+console.log(minimumChairs("EEEEEEE"));
+console.log(minimumChairs("ELELEEL"));
+console.log(minimumChairs("ELEELEELLL"));
+//time complexity:O(n)
+
+//                 <-------------------------------------------------->
+//Q Longest continuous Increasing Subsequence
+
+// Given an unsorted array of integers nums, return the length of the longest continuous increasing subsequence (i.e. subarray). The subsequence must be strictly increasing.
+
+// A continuous increasing subsequence is defined by two indices l and r (l < r) such that it is [nums[l], nums[l + 1], ..., nums[r - 1], nums[r]] and for each l <= i < r, nums[i] < nums[i + 1].
+
+// Example 1:
+
+// Input: nums = [1,3,5,4,7]
+// Output: 3
+// Explanation: The longest continuous increasing subsequence is [1,3,5] with length 3.
+// Even though [1,3,5,7] is an increasing subsequence, it is not continuous as elements 5 and 7 are separated by element
+// 4.
+// Example 2:
+
+// Input: nums = [2,2,2,2,2]
+// Output: 1
+// Explanation: The longest continuous increasing subsequence is [2] with length 1. Note that it must be strictly
+// increasing.
+
+function longestConSubsequnce(nums) {
+  if (nums.length === 0) return 0;
+  let length = 1;
+  let maxLength = 1;
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] > nums[i - 1]) {
+      length++;
+    } else {
+      length = 1;
+    }
+    maxLength = Math.max(length, maxLength);
+  }
+  return maxLength;
+}
+console.log(longestConSubsequnce([1, 3, 5, 4, 7]));
+console.log(longestConSubsequnce([2, 2, 2, 2, 2]));
+// //time complexity:O(n)
