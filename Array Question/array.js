@@ -1832,3 +1832,4 @@ console.log(longestConSubsequnce([1, 3, 5, 4, 7]));
 console.log(longestConSubsequnce([2, 2, 2, 2, 2]));
 // //time complexity:O(n)
 
+//                   <----------------------------------------------------->

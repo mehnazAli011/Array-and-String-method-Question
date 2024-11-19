@@ -625,9 +625,9 @@ console.log(fizzBuzz(15));
 // Explanation: 215 + 806 = 1021
 
 function addToArrayForm(n, k) {
-  n = BigInt(n.join(''));
-    let r = n + BigInt(k);
-    return r.toString().split('').map(Number);
+  n = BigInt(n.join(""));
+  let r = n + BigInt(k);
+  return r.toString().split("").map(Number);
 }
 console.log(addToArrayForm([1, 2, 0, 0], 34));
 console.log(addToArrayForm([2, 7, 4], 181));
@@ -677,3 +677,45 @@ console.log(isUgglyNum(6));
 console.log(isUgglyNum(1));
 console.log(isUgglyNum(14));
 //Time complexity:O(logn)
+
+//      <--------------------------------------------------------------->
+
+//Q Count odd Numbers in an Interval Range
+// Given two non-negative integers low and high. Return the count of odd numbers between low and high (inclusive).
+
+// Example 1:
+
+// Input: low = 3, high = 7
+// Output: 3
+// Explanation: The odd numbers between 3 and 7 are [3,5,7].
+// Example 2:
+
+// Input: low = 8, high = 10
+// Output: 1
+// Explanation: The odd numbers between 8 and 10 are [9].
+
+//brute froce Approach
+function countOdds(low, high) {
+  let count = 0;
+  for (let i = low; i <= high; i++) {
+    if (i % 2 !== 0) {
+      count++;
+    }
+  }
+  return count;
+}
+console.log(countOdds(3, 7));
+console.log(countOdds(8, 10));
+//time complexity:O(n)
+
+//optimal Approach
+function countOdds(low, high) {
+  if (low % 2 === 0 && high % 2 === 0) {
+    return (high - low) / 2;
+  } else {
+    return Math.floor((high - low) / 2) + 1;
+  }
+}
+console.log(countOdds(3, 7));
+console.log(countOdds(8, 10));
+// time complexity:O(1)
