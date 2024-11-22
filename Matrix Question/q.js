@@ -1,4 +1,4 @@
-//  Q 1. How to do flat array with out use flat method.
+//  Q 1. How to do flat array without use flat method.
 
 function flatTheArray(matrix) {
   let result = [];
