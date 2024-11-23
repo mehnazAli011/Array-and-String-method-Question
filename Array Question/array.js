@@ -1862,3 +1862,54 @@ console.log(isConsOdds([1, 2]));
 console.log(isConsOdds([1, 2, 3]));
 console.log(isConsOdds([1]));
 //time complexity:O(n)
+//                   <----------------------------------------------------->
+//Q Unique numnber of occurnes
+// Given an array of integers arr, return true if the number of occurrences of each value in the array is unique or false otherwise.
+
+// Example 1:
+
+// Input: arr = [1,2,2,1,1,3]
+// Output: true
+// Explanation: The value 1 has 3 occurrences, 2 has 2 and 3 has 1. No two values have the same number of occurrences.
+// Example 2:
+
+// Input: arr = [1,2]
+// Output: false
+// Example 3:
+
+// Input: arr = [-3,0,1,-3,1,1,1,-3,10,0]
+// Output: true
+
+//Brute force Approach
+function uniqueOcurneses(arr) {
+  let uniqueElm = Array.from(new Set(arr));
+  let res = [];
+  for (let i = 0; i < uniqueElm.length; i++) {
+    let count = 0;
+    for (let j = 0; j < arr.length; j++) {
+      if (uniqueElm[i] === arr[j]) {
+        count++;
+      }
+    }
+    res.push(count);
+  }
+  return res.every((elm, index) => elm !== res[index + 1]);
+}
+console.log(uniqueOcurneses([1, 2, 2, 1, 1, 3]));
+console.log(uniqueOcurneses([1, 2]));
+console.log(uniqueOcurneses([-3, 0, 1, -3, 1, 1, 1, -3, 10, 0]));
+//time complexity- O(n**2)
+
+function uniqueOcurneses(arr) {
+  let map = new Map();
+  for (let elm of arr) {
+    map.set(elm, (map.get(elm) || 0) + 1);
+  }
+
+  let freuncy = Array.from(map.values());
+  return freuncy.every((elm, index) => elm !== freuncy[index + 1]);
+}
+console.log(uniqueOcurneses([1, 2, 2, 1, 1, 3]));
+console.log(uniqueOcurneses([1, 2]));
+console.log(uniqueOcurneses([-3, 0, 1, -3, 1, 1, 1, -3, 10, 0]));
+//time complexity- O(n)
