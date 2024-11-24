@@ -130,3 +130,45 @@ console.log(findCompletement(5));
 console.log(findCompletement(1));
 //time complexity:-O(log(num))
 //         <-------------------------------------->
+//Q Number of 1 bits
+// Given a positive integer n. Your task is to return the count of set bits.
+
+// Examples:
+
+// Input: n = 6
+// Output: 2
+// Explanation: Binary representation is '110', so the count of the set bit is 2.
+// Input: n = 8
+// Output: 1
+// Explanation: Binary representation is '1000', so the count of the set bit is 1.
+// Input: n = 3
+// Output: 2
+//Brute force Approach
+function countSetOfBit(n) {
+  let count = 0;
+  while (n > 0) {
+    if (n % 2 === 1) count++;
+    n = Math.floor(n / 2);
+  }
+  return count;
+}
+console.log(countSetOfBit(6));
+console.log(countSetOfBit(8));
+console.log(countSetOfBit(3));
+console.log(countSetOfBit(128));
+//time complexity:O(log n)
+
+//Better Approach
+function countSetOfBit(n) {
+  let count = 0;
+  while (n > 0) {
+    n = n & (n - 1);
+    count++;
+  }
+  return count;
+}
+console.log(countSetOfBit(6));
+console.log(countSetOfBit(8));
+console.log(countSetOfBit(3));
+console.log(countSetOfBit(4));
+//time complexity:O(1)
