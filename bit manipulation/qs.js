@@ -14,6 +14,8 @@ console.log(inBinaryForm(12));
 console.log(inBinaryForm(13));
 console.log(inBinaryForm(6));
 console.log(inBinaryForm(7));
+console.log(inBinaryForm(11));
+
 //Time complexity:O(log n) because it's always logrithmic base of 2N.
 
 //               <--------------------------------------------------->
@@ -246,10 +248,6 @@ console.log(singleNumber([4, 1, 2, 1, 2]));
 console.log(singleNumber([1]));
 //time complexity-O(n)
 
-
-
-
-
 //         <-------------------------------------->
 //Q power of Two
 // Given an integer n, return true if it is a power of two. Otherwise, return false.
@@ -297,3 +295,35 @@ console.log(powerOfTwo(3));
 // A power of 2 in binary from is set of 1 bit and all other bit is 0 .so i use n&(n-1)===0
 
 //         <-------------------------------------->
+//XOR Operation on array
+// You are given an integer n and an integer start.
+
+// Define an array nums where nums[i] = start + 2 * i (0-indexed) and n == nums.length.
+
+// Return the bitwise XOR of all elements of nums.
+
+// Example 1:
+
+// Input: n = 5, start = 0
+// Output: 8
+// Explanation: Array nums is equal to [0, 2, 4, 6, 8] where (0 ^ 2 ^ 4 ^ 6 ^ 8) = 8.
+// Where "^" corresponds to bitwise XOR operator.
+// Example 2:
+
+// Input: n = 4, start = 3
+// Output: 8
+// Explanation: Array nums is equal to [3, 5, 7, 9] where (3 ^ 5 ^ 7 ^ 9) = 8.
+
+function xorOperation(n, start) {
+  value = 0;
+  let i = 0;
+  while (i < n) {
+    value ^= start + 2 * i;
+    i++;
+  }
+  return value;
+}
+console.log(xorOperation(5, 0));
+console.log(xorOperation(4, 3));
+// time complexity:O(n)
+

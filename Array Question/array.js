@@ -1939,15 +1939,15 @@ console.log(uniqueOcurneses([-3, 0, 1, -3, 1, 1, 1, -3, 10, 0]));
 // Explanation: Alice can only eat 4 / 2 = 2 candies. Even though she can eat 2 candies, she only has 1 type.
 
 //Better Approach
-function distributeCandies(candy) {
-  let maximumCondies = candy.length / 2;
-  let candyType = (new Set(candy));
-  return Math.min(candyType.size,maximumCondies)
-}
-console.log(distributeCandies([1, 1, 2, 2, 3, 3]));
-console.log(distributeCandies([1, 1, 2, 3]));
-console.log(distributeCandies([6, 6, 6, 6]));
-console.log(distributeCandies([2,2,3,3]));
-console.log(distributeCandies([1,1,1,1,2,2,2,2]));
-//time complexity:O(n)
-//                   <----------------------------------------------------->
+// function distributeCandies(candy) {
+//   let maximumCondies = candy.length / 2;
+//   let candyType = (new Set(candy));
+//   return Math.min(candyType.size,maximumCondies)
+// }
+// console.log(distributeCandies([1, 1, 2, 2, 3, 3]));
+// console.log(distributeCandies([1, 1, 2, 3]));
+// console.log(distributeCandies([6, 6, 6, 6]));
+// console.log(distributeCandies([2,2,3,3]));
+// console.log(distributeCandies([1,1,1,1,2,2,2,2]));
+// //time complexity:O(n)
+// //                   <----------------------------------------------------->
